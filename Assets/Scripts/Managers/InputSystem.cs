@@ -10,7 +10,7 @@ public class InputSystem : MonoBehaviour
 {
     private GameManager gameManager;
 
-    public Action<Vector2> OnMapScroll;
+
 
     public Action OnMouseLeftClick;
 
@@ -45,8 +45,6 @@ public class InputSystem : MonoBehaviour
     {
         axis.x = Input.GetAxis("Horizontal");
         axis.y = Input.GetAxis("Vertical");
-
-        OnMapScroll?.Invoke(axis.normalized);
     }
 
 }

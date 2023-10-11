@@ -2,12 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestEnemy : MonoBehaviour, IClickable
+public class TestEnemy : MonoBehaviour
 {
-    public void Click()
-    {
-        print("Clicking!!!!");
-    }
-
 
 }
