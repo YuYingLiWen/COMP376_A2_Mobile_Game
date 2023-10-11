@@ -1,0 +1,83 @@
+<mxfile host="Electron" modified="2023-10-11T04:44:47.100Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.0 Chrome/114.0.5735.289 Electron/25.8.3 Safari/537.36" etag="6Oqg3dHpNCAgcWMauHAc" version="22.0.0" type="device">
+  <diagram name="Page-1" id="2Cz8t8MNROx3FPMYZajf">
+    <mxGraphModel dx="1434" dy="1334" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="yWzTaKASnCqiQDcC6foj-15" value="Captain! Our ship got hit by a missle at the stern. We are on fire and taking in water quickly!" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="244" y="-199" width="318" height="73" as="geometry" />
+        </mxCell>
+        <mxCell id="yWzTaKASnCqiQDcC6foj-16" value="Yes, sir!&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="6" y="13.5" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="yWzTaKASnCqiQDcC6foj-17" value="" style="endArrow=classic;html=1;rounded=0;fontSize=12;startSize=8;endSize=8;curved=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="yWzTaKASnCqiQDcC6foj-15" target="yWzTaKASnCqiQDcC6foj-16" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="191" y="-52" as="sourcePoint" />
+            <mxPoint x="241" y="-102" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yWzTaKASnCqiQDcC6foj-21" value="Dispatch damage control team immediately!" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=16;" parent="yWzTaKASnCqiQDcC6foj-17" vertex="1" connectable="0">
+          <mxGeometry x="0.0191" y="1" relative="1" as="geometry">
+            <mxPoint x="15" y="-8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yWzTaKASnCqiQDcC6foj-18" value="" style="endArrow=classic;html=1;rounded=0;fontSize=12;startSize=8;endSize=8;curved=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="yWzTaKASnCqiQDcC6foj-15" target="yWzTaKASnCqiQDcC6foj-19" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="693" y="49" as="sourcePoint" />
+            <mxPoint x="743" y="-1" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yWzTaKASnCqiQDcC6foj-20" value="Requesting status from all teams." style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=16;" parent="yWzTaKASnCqiQDcC6foj-18" vertex="1" connectable="0">
+          <mxGeometry x="-0.0683" relative="1" as="geometry">
+            <mxPoint x="10" y="6" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yWzTaKASnCqiQDcC6foj-19" value="We only have light infantries guarding the border. They don&#39;t have any heavy weapons at their disposal." style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="762" y="-21" width="247" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="yWzTaKASnCqiQDcC6foj-22" value="According to intel, they are mostly composed of light infantries, armored cars, light tanks, and a few medium tanks." style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="594" y="211" width="265" height="87" as="geometry" />
+        </mxCell>
+        <mxCell id="yWzTaKASnCqiQDcC6foj-23" value="" style="endArrow=classic;html=1;rounded=0;fontSize=12;startSize=8;endSize=8;curved=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="yWzTaKASnCqiQDcC6foj-19" target="yWzTaKASnCqiQDcC6foj-22" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="638" y="200" as="sourcePoint" />
+            <mxPoint x="688" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yWzTaKASnCqiQDcC6foj-24" value="Do you have any intel &lt;br&gt;on the enemy&#39;s army composition?" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=16;" parent="yWzTaKASnCqiQDcC6foj-23" vertex="1" connectable="0">
+          <mxGeometry x="-0.1548" y="2" relative="1" as="geometry">
+            <mxPoint x="-5" y="4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yWzTaKASnCqiQDcC6foj-25" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="1085" y="238" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="yWzTaKASnCqiQDcC6foj-26" value="" style="endArrow=classic;html=1;rounded=0;fontSize=12;startSize=8;endSize=8;curved=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="yWzTaKASnCqiQDcC6foj-19" target="yWzTaKASnCqiQDcC6foj-25" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1051" y="158" as="sourcePoint" />
+            <mxPoint x="1101" y="108" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yWzTaKASnCqiQDcC6foj-27" value="Tell HQ to bring more troops&lt;br&gt;&amp;nbsp;and weapons ASAP." style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=16;" parent="yWzTaKASnCqiQDcC6foj-26" vertex="1" connectable="0">
+          <mxGeometry x="0.0535" y="1" relative="1" as="geometry">
+            <mxPoint x="4" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yWzTaKASnCqiQDcC6foj-28" value="" style="endArrow=classic;html=1;rounded=0;fontSize=12;startSize=8;endSize=8;curved=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="yWzTaKASnCqiQDcC6foj-22" target="yWzTaKASnCqiQDcC6foj-29" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="851" y="384" as="sourcePoint" />
+            <mxPoint x="637" y="437" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yWzTaKASnCqiQDcC6foj-30" value="Did intel reported on &lt;br&gt;their latest movements?" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=16;" parent="yWzTaKASnCqiQDcC6foj-28" vertex="1" connectable="0">
+          <mxGeometry x="-0.2534" y="-1" relative="1" as="geometry">
+            <mxPoint x="4" y="9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yWzTaKASnCqiQDcC6foj-29" value="Affirmative! Our recon planes reported that they have split their force into 3 separate groups before moving into forest.&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="419" y="403" width="314" height="85" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
