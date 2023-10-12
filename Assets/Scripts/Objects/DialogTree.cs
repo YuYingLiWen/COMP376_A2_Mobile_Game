@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-public class DialogueTree : MonoBehaviour
+public class DialogTree : MonoBehaviour
 {
     private const String path = "Dialogues";
     private Node root;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dialogue : MonoBehaviour
+public class Dialog : MonoBehaviour
 {
     private DialogueTree.Node root;
     [SerializeField] private DialogueTree tree;
