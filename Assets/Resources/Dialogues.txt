@@ -1,2 +1,4 @@
-0,-1,TestScript;
-1,0,ParentTest
+# id = 0, parent = 1, modifier = 2, modifier value = 3, dialogue = 4
+# Modifier = NONE, ATTACK, HIT_POINTS, SPEED, SPREAD
+0,-1,none,0,Test Script
+1,0,none,0,ParentTest

@@ -14,21 +14,25 @@ public class DialogueTree : MonoBehaviour
         try 
         {
             var dialogueFile = Resources.Load(path) as TextAsset;
-            var lines = dialogueFile.text.Split(';');
+            var lines = dialogueFile.text.Split("\r\n");
 
             List<Node> nodes = new(); // Cache for ease of access
 
-            foreach ( var line in lines )
+            foreach (var line in lines )
             {
-                String[] splits = line.Split(','); // id = 0; parent = 1; modifier = 2; modifier value = 3; dialogue = 4
+                print(line);
+
+                if (line[0] == '#' || String.IsNullOrEmpty(line)) continue;
+
+                String[] chunks = line.Split(','); // id = 0; parent = 1; modifier = 2; modifier value = 3; dialogue = 4
 
                 Node.Modifier modifier = new()
                 {
-                    category = Node.Convert(splits[2]),
-                    value = Convert.ToInt32(splits[3])
+                    category = Node.Convert(chunks[2]),
+                    value = Convert.ToInt32(chunks[3])
                 };
 
-                Node n = new (Convert.ToInt32(splits[0]), modifier, splits[4]);
+                Node n = new(Convert.ToInt32(chunks[0]), modifier, chunks[4]);
 
                 nodes.Add(n);
 
@@ -37,7 +41,7 @@ public class DialogueTree : MonoBehaviour
                 // Attach to parent
                 foreach (Node nd in nodes)
                 {
-                    if (nd.id == Convert.ToInt32(splits[1]))
+                    if (nd.id == Convert.ToInt32(chunks[1]))
                     {
                         nd.children.Add(n);
                     }
@@ -81,6 +85,7 @@ public class DialogueTree : MonoBehaviour
 
         public static Modifier.Category Convert(string modifier)
         {
+            modifier = modifier.ToUpper();
             if (modifier == "ATTACK") return Modifier.Category.ATTACK;
             else if (modifier == "HP") return Modifier.Category.HIT_POINTS;
             else if (modifier == "SPEED") return Modifier.Category.SPEED;

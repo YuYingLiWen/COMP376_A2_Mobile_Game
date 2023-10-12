@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Dialogue : MonoBehaviour
 {
-
     private DialogueTree.Node root;
     [SerializeField] private DialogueTree tree;
 
@@ -19,7 +18,6 @@ public class Dialogue : MonoBehaviour
         print(root.children[0].dialogue);
     }
 
-    // Update is called once per frame
     void Update()
     {
         
