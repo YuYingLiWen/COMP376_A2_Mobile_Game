@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
+using TMPro;
 
 /// <summary>
 /// Goal: Handles Player Inputs
@@ -10,12 +12,45 @@ public class InputSystem : MonoBehaviour
 {
     private GameManager gameManager;
 
+    private PlayerInput inputs;
 
+    private InputAction actionTouch0;
+    private InputAction actionTouch1;
+    private InputAction actionJump;
+    private InputAction actionPointer;
+
+    [SerializeField] private TextMeshProUGUI debugGUI;
 
     public Action OnMouseLeftClick;
 
     //Cache
-    private Vector2 axis = Vector2.zero; 
+    private Vector2 axis = Vector2.zero;
+
+    private void Awake()
+    {
+        inputs = GetComponent<PlayerInput>();
+
+        actionPointer = inputs.actions["Pointer"];
+        actionTouch0 = inputs.actions["Touch0"];
+        actionTouch1 = inputs.actions["Touch1"];
+        actionJump = inputs.actions["Jump"];
+
+    }
+
+    private void OnEnable()
+    {
+        inputs.ActivateInput();
+
+        actionPointer.Enable();
+        actionJump.Enable();
+        actionTouch0.Enable();
+        actionTouch1.Enable();
+
+        actionJump.performed += HandleJump;
+        actionPointer.performed += HandlePointer;
+        actionTouch0.performed += HandleTouch0;
+        actionTouch1.performed += HandleTouch1;
+    }
 
     private void Start()
     {
@@ -25,26 +60,69 @@ public class InputSystem : MonoBehaviour
 
     void Update()
     {
-        KeyboardEvents();
-        MouseEvents();
+
     }
 
-    private void KeyboardEvents()
+    private void OnDisable()
     {
-        // To Pause the game
-        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape)) gameManager.OnGamePause?.Invoke();
+        actionPointer.Disable();
+        actionTouch0.Disable();
+        actionTouch1.Disable();
+        actionJump.Disable();
+
+        inputs.DeactivateInput();
     }
 
-    private void MouseEvents()
+    private void HandleTouch0(InputAction.CallbackContext context)
     {
-        //Left click
-        if (Input.GetKeyUp(KeyCode.Mouse0)) OnMouseLeftClick?.Invoke();
+        try
+        {
+            print(context.valueType);
+            print("Touch0: " + context.ReadValue<Vector2>());
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+        }
+       // if (debugGUI.text.Length > 1000) debugGUI.text = "";
+
+        //debugGUI.text += "Touch0: " + context.ReadValue<Vector2>() + "\n";
     }
 
-    private void LateUpdate()
+    private void HandleTouch1(InputAction.CallbackContext context)
     {
-        axis.x = Input.GetAxis("Horizontal");
-        axis.y = Input.GetAxis("Vertical");
+        try
+        {
+            print(context.valueType);
+            print("Touch1: " + context.ReadValue<Vector2>());
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+        }
+       // if (debugGUI.text.Length > 1000) debugGUI.text = "";
+
+        //debugGUI.text += "Touch1: " + context.ReadValue<Vector2>() + "\n";
     }
 
+    private void HandlePointer(InputAction.CallbackContext context)
+    {
+        try
+        {
+            print(context.valueType);
+            print("Touch Pointer: " + context.ReadValue<Vector2>());
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+        }
+        //if (debugGUI.text.Length > 1000) debugGUI.text = "";
+       // debugGUI.text += "Pointer: " + context.ReadValue<Vector2>() + "\n";
+
+    }
+
+    private void HandleJump(InputAction.CallbackContext context)
+    {
+        Debug.Log("Jump");
+    }
 }
