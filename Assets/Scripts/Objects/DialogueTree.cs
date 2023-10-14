@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-public class DialogTree : MonoBehaviour
+public class DialogueTree : MonoBehaviour
 {
     private const String path = "Dialogues";
     private Node root;
@@ -63,14 +63,14 @@ public class DialogTree : MonoBehaviour
     public struct Node
     {
         public int id;
-        public String dialogue;
+        public String dialog;
         public List<Node> children;
         public Modifier modifier;
 
-        public Node(int id, Modifier modifier, String dialogue)
+        public Node(int id, Modifier modifier, String dialog)
         {
             this.id = id;
-            this.dialogue = dialogue;
+            this.dialog = dialog;
             this.children = new();
             this.modifier = modifier;
         }
