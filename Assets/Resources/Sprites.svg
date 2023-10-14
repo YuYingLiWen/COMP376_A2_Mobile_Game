@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   sodipodi:docname="Sprites.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.0759173"
+     inkscape:cx="-737.5102"
+     inkscape:cy="239.79538"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="1072"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="path288"
+       style="fill:#ffffff;stroke-width:0.201965"
+       d="M -239.22829 39.110791 A 39.6875 39.6875 0 0 0 -278.91579 78.798291 A 39.6875 39.6875 0 0 0 -239.22829 118.48579 A 39.6875 39.6875 0 0 0 -199.54079 78.798291 A 39.6875 39.6875 0 0 0 -239.22829 39.110791 z M -239.30116 42.829427 C -238.12187 42.826889 -236.94261 42.874094 -235.76907 42.993758 C -230.79352 43.471134 -225.91099 45.014599 -221.51878 47.48134 C -216.78207 50.118419 -212.55746 54.060773 -209.5252 58.499788 C -204.83924 65.308907 -202.63168 73.772532 -203.41859 82.00223 C -204.08267 89.470815 -207.08838 96.589197 -211.98603 102.27231 C -215.49375 106.37473 -220.07924 109.70061 -224.93562 111.79318 C -231.02658 114.437 -237.7435 115.34939 -244.30085 114.38785 C -253.32698 113.1303 -261.80258 108.30127 -267.41158 101.10856 C -272.23777 95.061238 -275.00286 87.430579 -275.16822 79.718648 C -275.46688 70.42602 -271.90048 61.140071 -265.56932 54.314514 C -259.16647 47.35003 -249.80825 43.157743 -240.48041 42.847514 C -240.08754 42.836442 -239.69425 42.830273 -239.30116 42.829427 z "
+       inkscape:export-filename="InkJoystickBase.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <circle
+       style="fill:#ffffff;stroke-width:0.0850659"
+       id="path234"
+       cx="-239.22829"
+       cy="78.798294"
+       r="4.2532992"
+       inkscape:export-filename="InkCircle.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <circle
+       style="fill:#ffffff;stroke-width:0.264583"
+       id="circle1748"
+       cx="-129.55048"
+       cy="53.961166"
+       r="13.229167"
+       inkscape:export-filename="InkCircle.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+  </g>
+</svg>
