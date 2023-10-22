@@ -133,6 +133,11 @@ public class InputSystem : MonoBehaviour
         isHoldingRightStick = false;
     }
 
+    private void HandleRotationPerformed(InputAction.CallbackContext context)
+    {
+        isHoldingRightStick = false;
+    }
+
     private void HandleTouch1(InputAction.CallbackContext context)
     {
         try

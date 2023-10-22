@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
 
     public float speed;
 
+    [SerializeField] private float fallSpeed = 10.0f;
+
     private void Awake()
     {
         health = new Health(10);
@@ -29,7 +31,22 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!characterController.isGrounded) 
+        {
+            characterController.Move(fallSpeed * Time.deltaTime * -transform.up);
+            return;
+        }
+
         characterController.Move(inputSystem.MovementAxis * Time.deltaTime * speed);
-        transform.forward = inputSystem.RotationAxis;
+        if(inputSystem.RotationAxis != Vector3.zero) transform.forward = inputSystem.RotationAxis;
+    }
+
+    [ContextMenu("Fire()")]
+    void Fire()
+    {
+        var pooledBullet = PlayerBulletPooler.Instance.Pool.Get();
+
+        pooledBullet.SetPosition(transform.position);
+        pooledBullet.SetDirection(transform.forward);
     }
 }

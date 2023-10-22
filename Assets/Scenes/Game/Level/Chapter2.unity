@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 7957089}
   - component: {fileID: 7957088}
   - component: {fileID: 7957087}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -660,6 +660,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputSystem: {fileID: 736445849}
   speed: 10
+  fallSpeed: 10
 --- !u!143 &829298861
 CharacterController:
   m_ObjectHideFlags: 0
@@ -700,7 +701,7 @@ GameObject:
   - component: {fileID: 994884281}
   - component: {fileID: 994884286}
   - component: {fileID: 994884285}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -789,7 +790,7 @@ Transform:
   m_GameObject: {fileID: 994884280}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 9.37, z: 6.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -838,6 +839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputSystem: {fileID: 736445849}
   speed: 10
+  fallSpeed: 1
 --- !u!1001 &1062392015
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1263,9 +1265,72 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floorTile: {fileID: 7830909917648418038, guid: edbadf3147ca1f94eb57039b3d3b9f74, type: 3}
-  tileScale: 1
+  tileScale: 5
   sizeX: 20
   sizeY: 20
+--- !u!1 &1336120526
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1336120527}
+  - component: {fileID: 1336120529}
+  - component: {fileID: 1336120528}
+  m_Layer: 0
+  m_Name: '### Poolers ###'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1336120527
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336120526}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1336120528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336120526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41433ad512cd6654880da9527584a012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toPool: {fileID: 8065322494360890089, guid: 8ac831fa8a4af0649a8dae007373b48f, type: 3}
+  initialAmount: 50
+  collectionCheck: 1
+--- !u!114 &1336120529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336120526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38f36fb3da172a4594191a3f4be4d14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toPool: {fileID: 2149785680409669326, guid: 5a914aef9f6bad84d97b99bc8aabc3c2, type: 3}
+  initialAmount: 50
+  collectionCheck: 1
 --- !u!1 &1457735936
 GameObject:
   m_ObjectHideFlags: 0
@@ -1412,7 +1477,7 @@ GameObject:
   - component: {fileID: 1755879819}
   - component: {fileID: 1755879818}
   - component: {fileID: 1755879817}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: u
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1517,7 +1582,7 @@ GameObject:
   - component: {fileID: 1891884617}
   - component: {fileID: 1891884616}
   - component: {fileID: 1891884615}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: f
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1803,3 +1868,4 @@ SceneRoots:
   - {fileID: 1123969375}
   - {fileID: 994884284}
   - {fileID: 736445852}
+  - {fileID: 1336120527}
