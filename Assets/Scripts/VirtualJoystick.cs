@@ -7,6 +7,9 @@ public class VirtualJoystick : MonoBehaviour, IPointerUpHandler, IPointerDownHan
     [SerializeField] private float dragRadius = 50.0f;
     [SerializeField] private bool resetAxisOnExit = true;
 
+    private bool isHolding = false;
+    public bool IsHolding => isHolding;
+
     private Vector2 anchor;
 
     Vector2 center;
@@ -46,15 +49,18 @@ public class VirtualJoystick : MonoBehaviour, IPointerUpHandler, IPointerDownHan
     public void OnPointerUp(PointerEventData eventData)
     {
         transform.position = anchor;
+        isHolding = false;
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         //To get OnPointerUp() to work as per documentation
+        isHolding = true;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if(resetAxisOnExit) axis = Vector3.zero;
+        isHolding = false;
     }
 }
