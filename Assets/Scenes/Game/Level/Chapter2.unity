@@ -661,6 +661,7 @@ MonoBehaviour:
   inputSystem: {fileID: 736445849}
   speed: 10
   fallSpeed: 10
+  rightJoystick: {fileID: 0}
 --- !u!143 &829298861
 CharacterController:
   m_ObjectHideFlags: 0
@@ -840,6 +841,7 @@ MonoBehaviour:
   inputSystem: {fileID: 736445849}
   speed: 10
   fallSpeed: 1
+  rightJoystick: {fileID: 1062392017}
 --- !u!1001 &1062392015
 PrefabInstance:
   m_ObjectHideFlags: 0

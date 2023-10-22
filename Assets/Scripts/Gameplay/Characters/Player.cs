@@ -1,3 +1,4 @@
+using System.Collections;
 
 using UnityEngine;
 
@@ -16,6 +17,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float fallSpeed = 10.0f;
 
+    [SerializeField] private VirtualJoystick rightJoystick;
+
     private void Awake()
     {
         health = new Health(10);
@@ -25,7 +28,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        
+        StartCoroutine(FireRoutine());
     }
 
     // Update is called once per frame
@@ -39,6 +42,11 @@ public class Player : MonoBehaviour
 
         characterController.Move(inputSystem.MovementAxis * Time.deltaTime * speed);
         if(inputSystem.RotationAxis != Vector3.zero) transform.forward = inputSystem.RotationAxis;
+
+        if(rightJoystick.IsHolding)
+        {
+
+        }
     }
 
     [ContextMenu("Fire()")]
@@ -48,5 +56,19 @@ public class Player : MonoBehaviour
 
         pooledBullet.SetPosition(transform.position);
         pooledBullet.SetDirection(transform.forward);
+    }
+
+    private IEnumerator FireRoutine()
+    {
+        WaitForSeconds waitFor = new WaitForSeconds(0.5f);
+
+        while(true)
+        {
+            if(rightJoystick.IsHolding)
+            {
+                Fire();
+            }
+            yield return waitFor;
+        }
     }
 }
