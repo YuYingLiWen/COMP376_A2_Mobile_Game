@@ -42,8 +42,6 @@ public class VirtualJoystick : MonoBehaviour, IPointerUpHandler, IPointerDownHan
         }
 
         axis = ((Vector2)transform.localPosition - center) / center.magnitude;
-
-        Debug.Log("AXIS: " + axis);
     }
 
     public void OnPointerUp(PointerEventData eventData)
