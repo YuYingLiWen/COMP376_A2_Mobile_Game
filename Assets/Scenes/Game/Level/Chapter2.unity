@@ -954,6 +954,10 @@ PrefabInstance:
       propertyPath: dragRadius
       value: 300
       objectReference: {fileID: 0}
+    - target: {fileID: 8460692650166959336, guid: bd593f215586c5549a80ed401706b047, type: 3}
+      propertyPath: resetAxisOnExit
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

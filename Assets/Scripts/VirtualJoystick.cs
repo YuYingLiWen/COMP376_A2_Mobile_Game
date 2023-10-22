@@ -4,8 +4,8 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(RectTransform))]
 public class VirtualJoystick : MonoBehaviour, IPointerUpHandler, IPointerDownHandler,  IPointerExitHandler
 {
-
     [SerializeField] private float dragRadius = 50.0f;
+    [SerializeField] private bool resetAxisOnExit = true;
 
     private Vector2 anchor;
 
@@ -55,6 +55,6 @@ public class VirtualJoystick : MonoBehaviour, IPointerUpHandler, IPointerDownHan
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        axis = Vector3.zero;
+        if(resetAxisOnExit) axis = Vector3.zero;
     }
 }
