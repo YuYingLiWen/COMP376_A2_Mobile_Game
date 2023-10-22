@@ -70,32 +70,58 @@
             ]
         },
         {
-            "name": "Keyboard",
-            "id": "592681cf-9788-4a0f-b9ad-727277e67c77",
+            "name": "Gamepad",
+            "id": "36243ef4-cbf4-4262-b397-9bfc3cf1ada5",
             "actions": [
                 {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "140fe19e-338f-482a-b525-a4f245d69fd2",
-                    "expectedControlType": "Button",
+                    "name": "Movement",
+                    "type": "Value",
+                    "id": "f7d06e6b-f557-40e4-b95b-dc37016c1837",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Rotate",
+                    "type": "Value",
+                    "id": "fa8d08c8-13ea-4be1-b345-f3c2a3c84652",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "d44c91ad-2ef8-453d-86bc-489defffa51c",
-                    "path": "<Keyboard>/space",
+                    "id": "111f3f3c-4941-4925-9f34-9991605abea0",
+                    "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Jump",
+                    "groups": "Gamepad",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "05c751a3-62be-4567-a89f-e403b8d53112",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "KeyboardMouse",
+            "id": "4a7a52e1-eef0-41fc-b111-8a0c6081eed0",
+            "actions": [],
+            "bindings": []
         }
     ],
     "controlSchemes": [

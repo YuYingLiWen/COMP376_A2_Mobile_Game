@@ -1,8 +1,12 @@
 using System;
+using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// Goal: Handles Player Inputs
@@ -18,22 +22,43 @@ public class InputSystem : MonoBehaviour
     private InputAction actionTouch1;
     private InputAction actionJump;
     private InputAction actionPointer;
+    private InputAction actionMovement;
+    private InputAction actionRotate;
 
-    [SerializeField] private TextMeshProUGUI debugGUI;
+    [SerializeField] private GraphicRaycaster graphicRaycaster;
+    private EventSystem eventSystem;
 
     public Action OnMouseLeftClick;
 
+    bool isHoldingLeftStick = false;
+    bool isHoldingRightStick = false;
+
+
     //Cache
-    private Vector2 axis = Vector2.zero;
+    private Vector3 movementAxis = Vector3.zero;
+    public Vector3 MovementAxis => movementAxis;
+
+    private Vector3 rotationAxis = Vector3.zero;
+    public Vector3 RotationAxis => rotationAxis;
+
+    // Movement stick
+    [SerializeField] VirtualJoystick leftStick;
+
+    //Rotation stick
+    [SerializeField] VirtualJoystick rightStick;
 
     private void Awake()
     {
         inputs = GetComponent<PlayerInput>();
+        eventSystem = GetComponent<EventSystem>();
 
         actionPointer = inputs.actions["Pointer"];
         actionTouch0 = inputs.actions["Touch0"];
         actionTouch1 = inputs.actions["Touch1"];
-        actionJump = inputs.actions["Jump"];
+        //actionJump = inputs.actions["Jump"];
+
+        actionMovement = inputs.actions["Movement"];
+        actionRotate = inputs.actions["Rotate"];
 
     }
 
@@ -42,14 +67,17 @@ public class InputSystem : MonoBehaviour
         inputs.ActivateInput();
 
         actionPointer.Enable();
-        actionJump.Enable();
+        //actionJump.Enable();
         actionTouch0.Enable();
         actionTouch1.Enable();
 
-        actionJump.performed += HandleJump;
-        actionPointer.performed += HandlePointer;
-        actionTouch0.performed += HandleTouch0;
-        actionTouch1.performed += HandleTouch1;
+        //actionJump.performed += HandleJump;
+        //actionPointer.performed += HandlePointer;
+        actionTouch0.started += HandleMovementStarted;
+        actionTouch1.started += HandleMovementStarted;
+
+        actionTouch0.performed += HandleMovementStarted;
+        actionTouch1.performed += HandleMovementStarted;
     }
 
     private void Start()
@@ -60,7 +88,11 @@ public class InputSystem : MonoBehaviour
 
     void Update()
     {
+        var moveAxis = leftStick.GetAxis();
+        movementAxis = new Vector3(moveAxis.x, 0, moveAxis.y);
 
+        var rotAxis = rightStick.GetAxis();
+        rotationAxis = new Vector3(rotAxis.x, 0, rotAxis.y); 
     }
 
     private void OnDisable()
@@ -68,57 +100,61 @@ public class InputSystem : MonoBehaviour
         actionPointer.Disable();
         actionTouch0.Disable();
         actionTouch1.Disable();
-        actionJump.Disable();
+        //actionJump.Disable();
 
         inputs.DeactivateInput();
     }
 
-    private void HandleTouch0(InputAction.CallbackContext context)
+    private void HandleMovementStarted(InputAction.CallbackContext context)
     {
-        try
-        {
-            print(context.valueType);
-            print("Touch0: " + context.ReadValue<Vector2>());
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e);
-        }
-       // if (debugGUI.text.Length > 1000) debugGUI.text = "";
+        Vector2 position = context.ReadValue<Vector2>();
+        PointerEventData eventData = new PointerEventData(eventSystem);
+        eventData.position = position;
+        List<RaycastResult> raycastResult = new List<RaycastResult>();
+        graphicRaycaster.Raycast(eventData, raycastResult);
 
-        //debugGUI.text += "Touch0: " + context.ReadValue<Vector2>() + "\n";
+        foreach(RaycastResult result in raycastResult)
+        {
+            if(result.gameObject.name == "LeftStickCenter")
+            {
+                leftStick.HandleMove(position);
+                isHoldingLeftStick = true;
+            }
+            else if(result.gameObject.name == "RightStickCenter")
+            {
+                rightStick.HandleMove(position);
+                isHoldingRightStick = true;
+            }
+        }
+    }
+
+    private void HandleMovementPerformed(InputAction.CallbackContext context)
+    {
+        isHoldingRightStick = false;
     }
 
     private void HandleTouch1(InputAction.CallbackContext context)
     {
         try
         {
-            print(context.valueType);
             print("Touch1: " + context.ReadValue<Vector2>());
         }
         catch (Exception e)
         {
             Debug.Log(e);
         }
-       // if (debugGUI.text.Length > 1000) debugGUI.text = "";
-
-        //debugGUI.text += "Touch1: " + context.ReadValue<Vector2>() + "\n";
     }
 
     private void HandlePointer(InputAction.CallbackContext context)
     {
         try
         {
-            print(context.valueType);
             print("Touch Pointer: " + context.ReadValue<Vector2>());
         }
         catch (Exception e)
         {
             Debug.Log(e);
         }
-        //if (debugGUI.text.Length > 1000) debugGUI.text = "";
-       // debugGUI.text += "Pointer: " + context.ReadValue<Vector2>() + "\n";
-
     }
 
     private void HandleJump(InputAction.CallbackContext context)

@@ -87,9 +87,9 @@ GameObject:
   - component: {fileID: 5179234573934816819}
   - component: {fileID: 2759780331114996793}
   - component: {fileID: 1418075292514732103}
-  - component: {fileID: 6357585928465432677}
+  - component: {fileID: 8460692650166959336}
   m_Layer: 5
-  m_Name: CenterControl
+  m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6357585928465432677
+--- !u!114 &8460692650166959336
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,29 +161,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8414187928335137255}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9d677f1681015749b15c436eec6d880, type: 3}
+  m_Script: {fileID: 11500000, guid: bced312e47680cc4ba24e364c79ee04b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovementRange: 150
-  m_DynamicOriginRange: 100
-  m_ControlPath: <Gamepad>/leftStick
-  m_Behaviour: 0
-  m_UseIsolatedInputActions: 0
-  m_PointerDownAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 1ee5761e-5fb0-4df9-b16f-64fd54998453
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  m_PointerMoveAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 62f6426e-4caf-4860-bde1-fcf5a9f44a85
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
+  dragRadius: 50

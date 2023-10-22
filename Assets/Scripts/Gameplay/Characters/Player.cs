@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 
@@ -10,9 +9,16 @@ public class Player : MonoBehaviour
 
     private Health health;
 
+    [SerializeField] InputSystem inputSystem;
+    private CharacterController characterController;
+
+    public float speed;
+
     private void Awake()
     {
         health = new Health(10);
+
+        characterController = GetComponent<CharacterController>();  
     }
 
     void Start()
@@ -23,6 +29,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        characterController.Move(inputSystem.MovementAxis * Time.deltaTime * speed);
+        transform.forward = inputSystem.RotationAxis;
     }
 }
