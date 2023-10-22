@@ -25,6 +25,7 @@ public class PlayerBulletPooler : GameObjectPooler<Projectile>
     protected override void OnGetFromPool(Projectile obj)
     {
         obj.gameObject.SetActive(true);
+        obj.ResestTime();
     }
 
     protected override void OnRelease(Projectile obj)
