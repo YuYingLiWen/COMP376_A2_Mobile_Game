@@ -4,14 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 /// <summary>
 /// Goal: Handles Player Inputs
 /// </summary>
-
 public class InputSystem : MonoBehaviour
 {
     private GameManager gameManager;
@@ -20,7 +18,6 @@ public class InputSystem : MonoBehaviour
 
     private InputAction actionTouch0;
     private InputAction actionTouch1;
-    private InputAction actionJump;
     private InputAction actionPointer;
     private InputAction actionMovement;
     private InputAction actionRotate;
@@ -55,7 +52,6 @@ public class InputSystem : MonoBehaviour
         actionPointer = inputs.actions["Pointer"];
         actionTouch0 = inputs.actions["Touch0"];
         actionTouch1 = inputs.actions["Touch1"];
-        //actionJump = inputs.actions["Jump"];
 
         actionMovement = inputs.actions["Movement"];
         actionRotate = inputs.actions["Rotate"];
@@ -67,11 +63,9 @@ public class InputSystem : MonoBehaviour
         inputs.ActivateInput();
 
         actionPointer.Enable();
-        //actionJump.Enable();
         actionTouch0.Enable();
         actionTouch1.Enable();
 
-        //actionJump.performed += HandleJump;
         //actionPointer.performed += HandlePointer;
         actionTouch0.started += HandleMovementStarted;
         actionTouch1.started += HandleMovementStarted;
@@ -100,7 +94,6 @@ public class InputSystem : MonoBehaviour
         actionPointer.Disable();
         actionTouch0.Disable();
         actionTouch1.Disable();
-        //actionJump.Disable();
 
         inputs.DeactivateInput();
     }
@@ -160,10 +153,5 @@ public class InputSystem : MonoBehaviour
         {
             Debug.Log(e);
         }
-    }
-
-    private void HandleJump(InputAction.CallbackContext context)
-    {
-        Debug.Log("Jump");
     }
 }
