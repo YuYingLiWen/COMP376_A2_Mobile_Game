@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7913593386825575814}
   - component: {fileID: 2495408957412334079}
   - component: {fileID: 4991868534949872795}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: temp bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  timeToDespawn: 5
 --- !u!54 &4991868534949872795
 Rigidbody:
   m_ObjectHideFlags: 0

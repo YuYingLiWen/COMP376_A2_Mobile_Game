@@ -42,11 +42,6 @@ public class Player : MonoBehaviour
 
         characterController.Move(inputSystem.MovementAxis * Time.deltaTime * speed);
         if(inputSystem.RotationAxis != Vector3.zero) transform.forward = inputSystem.RotationAxis;
-
-        if(rightJoystick.IsHolding)
-        {
-
-        }
     }
 
     [ContextMenu("Fire()")]

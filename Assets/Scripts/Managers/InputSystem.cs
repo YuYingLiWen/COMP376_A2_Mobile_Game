@@ -12,6 +12,9 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class InputSystem : MonoBehaviour
 {
+    private static InputSystem instance;
+    public static InputSystem Instance => instance;
+
     private GameManager gameManager;
 
     private PlayerInput inputs;
@@ -46,6 +49,9 @@ public class InputSystem : MonoBehaviour
 
     private void Awake()
     {
+        if (!instance) instance = this;
+        else Debug.LogWarning("InputSystem already exist in scene", this);
+
         inputs = GetComponent<PlayerInput>();
         eventSystem = GetComponent<EventSystem>();
 
@@ -55,7 +61,6 @@ public class InputSystem : MonoBehaviour
 
         actionMovement = inputs.actions["Movement"];
         actionRotate = inputs.actions["Rotate"];
-
     }
 
     private void OnEnable()
