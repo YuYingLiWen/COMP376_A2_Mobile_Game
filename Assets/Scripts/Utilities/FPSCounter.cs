@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -8,9 +6,15 @@ public class FPSCounter : MonoBehaviour
 
     TextMeshProUGUI m_TextMeshProUGUI;
 
-    private void Start()
+    private void Awake()
     {
         Application.targetFrameRate = 60;
+        Application.runInBackground = false;
+        Screen.orientation = ScreenOrientation.Portrait;
+    }
+
+    private void Start()
+    {
       m_TextMeshProUGUI = GetComponent<TextMeshProUGUI>();  
     }
 

@@ -1,3 +1,6 @@
+
+using System;
+
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -6,6 +9,9 @@ public class VirtualJoystick : MonoBehaviour, IPointerUpHandler, IPointerDownHan
 {
     [SerializeField] private float dragRadius = 50.0f;
     [SerializeField] private bool resetAxisOnExit = true;
+
+    public Action OnHoldingStart;
+    public Action OnHoldingStop;
 
     private bool isHolding = false;
     public bool IsHolding => isHolding;
@@ -54,11 +60,13 @@ public class VirtualJoystick : MonoBehaviour, IPointerUpHandler, IPointerDownHan
     {
         //To get OnPointerUp() to work as per documentation
         isHolding = true;
+        OnHoldingStart.Invoke();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if(resetAxisOnExit) axis = Vector3.zero;
         isHolding = false;
+        OnHoldingStop.Invoke();
     }
 }
