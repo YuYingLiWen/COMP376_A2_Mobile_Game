@@ -23,29 +23,22 @@ public class InputSystem : MonoBehaviour
     private InputAction actionTouch1;
     private InputAction actionPointer;
     private InputAction actionMovement;
-    private InputAction actionRotate;
 
     [SerializeField] private GraphicRaycaster graphicRaycaster;
     private EventSystem eventSystem;
-
-    public Action OnMouseLeftClick;
-
-    bool isHoldingLeftStick = false;
-    bool isHoldingRightStick = false;
-
 
     //Cache
     private Vector3 movementAxis = Vector3.zero;
     public Vector3 MovementAxis => movementAxis;
 
-    private Vector3 rotationAxis = Vector3.zero;
-    public Vector3 RotationAxis => rotationAxis;
+    // Fire Button
+    [SerializeField] private Button fire;
+    public Button Fire => fire;
+
 
     // Movement stick
     [SerializeField] VirtualJoystick leftStick;
-
-    //Rotation stick
-    [SerializeField] VirtualJoystick rightStick;
+    public VirtualJoystick AimJoystick => leftStick;
 
     private void Awake()
     {
@@ -60,7 +53,6 @@ public class InputSystem : MonoBehaviour
         actionTouch1 = inputs.actions["Touch1"];
 
         actionMovement = inputs.actions["Movement"];
-        actionRotate = inputs.actions["Rotate"];
     }
 
     private void OnEnable()
@@ -87,11 +79,7 @@ public class InputSystem : MonoBehaviour
 
     void Update()
     {
-        var moveAxis = leftStick.GetAxis();
-        movementAxis = new Vector3(moveAxis.x, 0, moveAxis.y);
-
-        var rotAxis = rightStick.GetAxis();
-        rotationAxis = new Vector3(rotAxis.x, 0, rotAxis.y); 
+        movementAxis = leftStick.GetAxis();
     }
 
     private void OnDisable()
@@ -116,24 +104,13 @@ public class InputSystem : MonoBehaviour
             if(result.gameObject.name == "LeftStickCenter")
             {
                 leftStick.HandleMove(position);
-                isHoldingLeftStick = true;
-            }
-            else if(result.gameObject.name == "RightStickCenter")
-            {
-                rightStick.HandleMove(position);
-                isHoldingRightStick = true;
             }
         }
     }
 
     private void HandleMovementPerformed(InputAction.CallbackContext context)
     {
-        isHoldingRightStick = false;
-    }
 
-    private void HandleRotationPerformed(InputAction.CallbackContext context)
-    {
-        isHoldingRightStick = false;
     }
 
     private void HandleTouch1(InputAction.CallbackContext context)

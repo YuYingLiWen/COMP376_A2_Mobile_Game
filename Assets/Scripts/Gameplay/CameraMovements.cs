@@ -10,31 +10,14 @@ public class CameraMovements : MonoBehaviour
     [SerializeField] float groundViewTransitionTime = 3.0f;
     [SerializeField] float birdViewTransitionTime = 1.0f;
 
-    Transform player;
-
     [SerializeField] private float height = 20.0f;
     [SerializeField] private float lookAheadDistance = 10.0f;
 
 
-
     void Start()
     {
-        player = GameObject.FindWithTag("Player").transform;
-
         //StartCoroutine(ToViewRoutine(startTransitionTime, groundView));
     }
-
-    private void LateUpdate()
-    {
-        var direction2d = InputSystem.Instance.RotationAxis.normalized;
-        var direction = new Vector3(direction2d.x, transform.position.y, direction2d.z);
-
-        transform.position = Vector3.Lerp(transform.position, new Vector3(
-            player.position.x + direction.x * lookAheadDistance, 
-            player.position.y + height, 
-            player.position.z + direction.z * lookAheadDistance), 0.2f);
-    }
-
 
     [ContextMenu("To Ground View")]
     private void ToGroundView()
