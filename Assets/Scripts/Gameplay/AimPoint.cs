@@ -8,18 +8,29 @@ public class AimPoint : MonoBehaviour
     private int layerMask;
 
     [SerializeField] private string[] layerMasks = { "Enemies" };
-    
+
+    private float halfWidth, halfHeight;
 
     private void Awake()
     {
         layerMask = LayerMask.GetMask(layerMasks);
+
+        halfHeight = Screen.height / 2.0f;
+        halfWidth = Screen.width / 2.0f;
     }
 
     public Vector2 WorldPoint => Camera.main.ScreenToWorldPoint(transform.position);
 
     public void Translate(Vector2 direction, in float speed)
     {
-        transform.Translate(direction * speed * Time.deltaTime);
+        Vector3 move = direction * speed * Time.deltaTime;
+        Vector3 nextPos = transform.position + move;
+
+        if (nextPos.y <= Screen.height && nextPos.y >= 0.0f &&
+            nextPos.x <= Screen.width && nextPos.x >= 0.0f)
+        {
+            transform.Translate(move);
+        }
     }
 
     public RaycastHit2D Raycast(Vector2 origin, Vector2 aimCircle)
