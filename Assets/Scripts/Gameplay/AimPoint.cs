@@ -8,6 +8,7 @@ public class AimPoint : MonoBehaviour
     private int layerMask;
 
     [SerializeField] private string[] layerMasks = { "Enemies" };
+    [SerializeField] private Transform scopeCamera;
 
     private float halfWidth, halfHeight;
 
@@ -30,6 +31,8 @@ public class AimPoint : MonoBehaviour
             nextPos.x <= Screen.width && nextPos.x >= 0.0f)
         {
             transform.Translate(move);
+
+            scopeCamera.position = (Vector3)WorldPoint - (Vector3.forward * 100.0f);
         }
     }
 

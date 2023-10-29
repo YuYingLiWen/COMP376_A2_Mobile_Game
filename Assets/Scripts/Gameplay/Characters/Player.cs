@@ -16,6 +16,10 @@ public class Player : MonoBehaviour, IActor
     [SerializeField] private float aimSpeed = 3.0f;
     private CircleCollider2D coll;
 
+    private bool canFire = true;
+    [SerializeField] private float reloadTime = 1.0f;
+    private float elapsedReloadTime = 0.0f;
+
     private void Awake()
     {
         health = GetComponent<Health>();
@@ -45,11 +49,22 @@ public class Player : MonoBehaviour, IActor
 
     void Update()
     {
-        if (HasCover) return;// No Cover
+        UpdateCover();
+        Reload();
+    }
 
-        aimPoint.Translate(inputSystem.MovementAxis(), in aimSpeed);
+    private void Reload()
+    {
+        if (canFire) return; // If can fire then don't need reload.
 
-        transform.up = (Vector3)aimPoint.WorldPoint - transform.position;
+        if (elapsedReloadTime >= reloadTime)
+        {
+            canFire = true;
+            elapsedReloadTime = 0.0f;
+            return;
+        }
+
+        elapsedReloadTime += Time.deltaTime;
     }
 
     void HandleFire(InputAction.CallbackContext context)
@@ -60,6 +75,9 @@ public class Player : MonoBehaviour, IActor
     [ContextMenu("Fire()")]
     void Fire()
     {
+        if (!canFire) return;
+        canFire = false;
+
         Vector2 aimCircle = Random.insideUnitCircle * firingAngle;
 
         // Check if distance is too close to player 
@@ -111,6 +129,15 @@ public class Player : MonoBehaviour, IActor
         aimPoint.SetRectPosition(transform.position);
 
         Uncover();
+    }
+
+    private void UpdateCover()
+    {
+        if (HasCover) return;
+
+        aimPoint.Translate(inputSystem.MovementAxis(), in aimSpeed);
+
+        transform.up = (Vector3)aimPoint.WorldPoint - transform.position;
     }
 
     // Player is behind some cover to mitigate damage

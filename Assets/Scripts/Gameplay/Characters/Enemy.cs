@@ -76,12 +76,10 @@ public class Enemy : MonoBehaviour, IActor
 
     public void TakeDamage(int damage, Vector3 at, Vector3 up)
     {
-        if (isUnderCover) damage /= 2;
+        if (isUnderCover) damage -= 1;
 
         health.TakeDamage(damage);
 
-
-        Debug.Log(health.GetPoints());
         SpawnBlood(at, up);
 
         if(!health.IsAlive())
