@@ -1,13 +1,17 @@
+using UnityEngine;
 
-public class Health 
+public class Health :MonoBehaviour
 {
-    private int hp;
+    [SerializeField] private int points;
 
-    public Health() { hp = 1; }
-    public Health(int health) { hp = health; }
+    public void SetPoints(int points) { this.points = points; }
 
-    public int GetHP() => hp;
-    public void TakeDamage(int damage) => hp -= damage;
-    public bool IsAlive() => hp <= 0;
+    public int GetPoints() => points;
+    public void TakeDamage(int damage)
+    {
+        points -= damage;
+    }
+        
+    public bool IsAlive() => points > 0;
 
 }

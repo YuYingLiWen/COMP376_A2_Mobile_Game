@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Despawn
+  - Sandbag
+  - Ally
   layers:
   - Default
   - TransparentFX
@@ -12,12 +15,12 @@ TagManager:
   - 
   - Water
   - UI
-  - Player
+  - Allies
   - Level
-  - 
+  - Despawn
   - Enemies
-  - 
-  - 
+  - FieldObjects
+  - Trench
   - 
   - 
   - 

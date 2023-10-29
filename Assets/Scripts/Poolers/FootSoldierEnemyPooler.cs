@@ -1,12 +1,17 @@
 ﻿using UnityEngine;
 using UnityEngine.Pool;
 
-public class BasicEnemyPooler : GameObjectPooler<Enemy>
+public class FootSoldierEnemyPooler : GameObjectPooler<Enemy>
 {
     private void Awake()
     {
         if (!instance) instance = this;
         else Debug.LogWarning("Multiple " + this.GetType().Name, this);
+    }
+
+    protected override void Start()
+    {
+        pool = new ObjectPool<Enemy>(OnCreate, OnGetFromPool, OnRelease, OnDestruction, collectionCheck, initialAmount);
     }
 
     protected override Enemy OnCreate()
@@ -24,6 +29,7 @@ public class BasicEnemyPooler : GameObjectPooler<Enemy>
     protected override void OnGetFromPool(Enemy obj)
     {
         obj.gameObject.SetActive(true);
+        obj.transform.up = Vector3.down;
     }
 
     protected override void OnRelease(Enemy obj)
@@ -31,9 +37,9 @@ public class BasicEnemyPooler : GameObjectPooler<Enemy>
         obj.gameObject.SetActive(false);
     }
 
-    private ObjectPool<BasicEnemyPooler> pool;
-    public ObjectPool<BasicEnemyPooler> Pool => pool;
+    private ObjectPool<Enemy> pool;
+    public ObjectPool<Enemy> Pool => pool;
 
-    private static BasicEnemyPooler instance;
-    public static BasicEnemyPooler Instance => instance;
+    private static FootSoldierEnemyPooler instance;
+    public static FootSoldierEnemyPooler Instance => instance;
 }

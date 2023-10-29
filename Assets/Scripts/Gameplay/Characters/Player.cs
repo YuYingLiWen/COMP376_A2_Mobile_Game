@@ -3,9 +3,9 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour, IActor
 {
-    private int attackPoints; // Damage per shot fired
+    [SerializeField] private int attackPoints = 5; // Damage per shot fired
 
-    private Health health;
+    [SerializeField] private Health health;
 
     [SerializeField] private GameInputSystem inputSystem;
 
@@ -18,7 +18,7 @@ public class Player : MonoBehaviour, IActor
 
     private void Awake()
     {
-        health = new Health(10);
+        health = GetComponent<Health>();
 
         coll = GetComponent<CircleCollider2D>();
     }
@@ -90,8 +90,7 @@ public class Player : MonoBehaviour, IActor
             {
                 var enemy = collider.GetComponent<Enemy>();
 
-                enemy.SpawnBlood(pointer.point, transform.position);
-                enemy.TakeDamage(attackPoints);
+                enemy.TakeDamage(attackPoints, pointer.point, transform.position);
 
                 trail.SetPositions(rifle.position, pointer.point);
             }
@@ -126,14 +125,21 @@ public class Player : MonoBehaviour, IActor
         coll.enabled = true;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Vector3 at, Vector3 up)
     {
         health.TakeDamage(damage);
     }
 
     public void SpawnBlood(Vector3 at, Vector3 up)
     {
+        GameObject blood = BloodPooler.Instance.Pool.Get();
+        blood.transform.up = at - up;
+        blood.transform.position = at;
+    }
 
+    public Transform GetTransform()
+    {
+        return transform;
     }
 
     bool HasCover => !coll.enabled;

@@ -6,6 +6,12 @@ public abstract class GameObjectPooler<T> : MonoBehaviour
     [SerializeField] protected int initialAmount = 50;
     [SerializeField] protected bool collectionCheck = false;
 
+
+    /// <summary>
+    /// Create pool.
+    /// </summary>
+    protected abstract void Start();
+
     /// <summary>
     /// Called when no more inactive object in pool.
     /// </summary>

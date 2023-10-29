@@ -10,7 +10,7 @@ public class BloodPooler : GameObjectPooler<GameObject>
         else Debug.LogWarning("Multiple " + this.GetType().Name, this);
     }
 
-    private void Start()
+    protected override void Start()
     {
         pool = new ObjectPool<GameObject>(OnCreate, OnGetFromPool, OnRelease, OnDestruction, collectionCheck, initialAmount);
     }

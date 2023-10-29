@@ -10,7 +10,7 @@ public class ProjectileTrailPooler : GameObjectPooler<ProjectileTrail>
         else Debug.LogWarning("Multiple " + this.GetType().Name, this);
     }
 
-    private void Start()
+    protected override void Start()
     {
         pool = new ObjectPool<ProjectileTrail>(OnCreate, OnGetFromPool, OnRelease, OnDestruction, collectionCheck, initialAmount);
     }

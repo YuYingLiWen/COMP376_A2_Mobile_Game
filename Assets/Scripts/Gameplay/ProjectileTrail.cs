@@ -15,6 +15,7 @@ public class ProjectileTrail : MonoBehaviour
     void Awake()
     {
         line = GetComponent<LineRenderer>();
+        line.sortingLayerName = "Middle";
     }
 
     // Update is called once per frame
@@ -24,18 +25,16 @@ public class ProjectileTrail : MonoBehaviour
         elapsedTime += Time.deltaTime;
     }
 
-    public void SetPositions(Vector2 start, Vector2 end)
+    public void SetPositions(Vector3 start, Vector3 end)
     {
-        line.SetPosition(0, start);
-        line.SetPosition(1, end);
-        line.sortingLayerName = "Ground";
+        line.SetPosition(0, start - Vector3.forward);
+        line.SetPosition(1, end - Vector3.forward);
     }
 
-    public void SetWildShot(Vector2 start, Vector2 direction, Vector2 aimCircle)
+    public void SetWildShot(Vector3 start, Vector3 direction, Vector3 aimCircle)
     {
-        line.SetPosition(0, start);
-        line.SetPosition(1, direction * outOfView + aimCircle);
-        line.sortingLayerName = "Middle";
+        line.SetPosition(0, start - Vector3.forward);
+        line.SetPosition(1, direction * outOfView + aimCircle - Vector3.forward);
     }
 
     public void ResetPositions()
