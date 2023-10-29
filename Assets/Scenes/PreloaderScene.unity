@@ -202,6 +202,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3167115794613034022, guid: fc9edb753a24411438a3ce4f981b5406, type: 3}
+    - {fileID: 9139023544818340579, guid: fc9edb753a24411438a3ce4f981b5406, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -216,8 +217,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1352268431}
   - component: {fileID: 1352268430}
+  - component: {fileID: 1352268432}
   m_Layer: 0
-  m_Name: PreloaderController
+  m_Name: '### Scritps ###'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -250,6 +252,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1352268432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352268429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671c413a2c00b7f4ea9e481bd016b5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

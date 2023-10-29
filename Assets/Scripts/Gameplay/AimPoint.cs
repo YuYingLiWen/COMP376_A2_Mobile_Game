@@ -3,21 +3,14 @@ using UnityEngine;
 
 public class AimPoint : MonoBehaviour
 {
-    const float maxRayDistance = 500.0f;
-
     private int layerMask;
 
     [SerializeField] private string[] layerMasks = { "Enemies" };
     [SerializeField] private Transform scopeCamera;
 
-    private float halfWidth, halfHeight;
-
     private void Awake()
     {
         layerMask = LayerMask.GetMask(layerMasks);
-
-        halfHeight = Screen.height / 2.0f;
-        halfWidth = Screen.width / 2.0f;
     }
 
     public Vector2 WorldPoint => Camera.main.ScreenToWorldPoint(transform.position);

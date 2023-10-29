@@ -19,8 +19,6 @@ public class LevelManager : MonoBehaviour
 
     //Cache
     private Camera cam;
-    private Ray mouseRay;
-
 
     private void Awake()
     {

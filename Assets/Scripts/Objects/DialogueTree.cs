@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DialogueTree : MonoBehaviour
 {
-    private const String path = "Dialogues";
+    private const string path = "Dialogues";
     private Node root;
 
 
@@ -22,9 +22,9 @@ public class DialogueTree : MonoBehaviour
             {
                 print(line);
 
-                if (line[0] == '#' || String.IsNullOrEmpty(line)) continue;
+                if (line[0] == '#' || string.IsNullOrEmpty(line)) continue;
 
-                String[] chunks = line.Split(','); // id = 0; parent = 1; modifier = 2; modifier value = 3; dialogue = 4
+                string[] chunks = line.Split(','); // id = 0; parent = 1; modifier = 2; modifier value = 3; dialogue = 4
 
                 Node.Modifier modifier = new()
                 {
@@ -63,11 +63,11 @@ public class DialogueTree : MonoBehaviour
     public struct Node
     {
         public int id;
-        public String dialog;
+        public string dialog;
         public List<Node> children;
         public Modifier modifier;
 
-        public Node(int id, Modifier modifier, String dialog)
+        public Node(int id, Modifier modifier, string dialog)
         {
             this.id = id;
             this.dialog = dialog;
