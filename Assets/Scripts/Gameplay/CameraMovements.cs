@@ -13,10 +13,37 @@ public class CameraMovements : MonoBehaviour
     [SerializeField] private float height = 20.0f;
     [SerializeField] private float lookAheadDistance = 10.0f;
 
+    [SerializeField] private float bobDistance = 1.0f;
+
+    private Vector3 cameraOriginalVals;
+
+    private void Awake()
+    {
+        cameraOriginalVals = transform.localPosition;
+    }
 
     void Start()
     {
         //StartCoroutine(ToViewRoutine(startTransitionTime, groundView));
+    }
+
+    public void WalkAnimation()
+    {
+        StartCoroutine(WalkAnimationRoutine());
+    }
+
+    private IEnumerator WalkAnimationRoutine()
+    {
+        Transform cam = Camera.main.transform;
+
+        float timeElapsed = 0.0f;
+
+        while (true)
+        {
+            cam.Translate(Vector3.up * Mathf.Sin(timeElapsed));
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
     }
 
     [ContextMenu("To Ground View")]

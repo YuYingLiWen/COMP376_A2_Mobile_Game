@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float cameraScrollSpeed = 1.0f;
 
     private GameManager gameManager;
-    private InputSystem inputSystem;
+    private GameInputSystem inputSystem;
 
     public Action OnGameOver;
     public Action OnGameWon;

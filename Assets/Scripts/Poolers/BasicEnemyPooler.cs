@@ -6,7 +6,7 @@ public class BasicEnemyPooler : GameObjectPooler<Enemy>
     private void Awake()
     {
         if (!instance) instance = this;
-        else Debug.LogWarning("Multiple PlayerBulletPooler!", this);
+        else Debug.LogWarning("Multiple " + this.GetType().Name, this);
     }
 
     protected override Enemy OnCreate()

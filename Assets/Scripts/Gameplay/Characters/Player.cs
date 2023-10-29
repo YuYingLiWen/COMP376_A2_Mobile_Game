@@ -1,48 +1,38 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IActor
 {
-    private int attack;
+    private int attackPoints; // Damage per shot fired
 
     private Health health;
 
-    [SerializeField] InputSystem inputSystem;
+    [SerializeField] private GameInputSystem inputSystem;
 
-    [SerializeField] Transform aimPoint;
-    [SerializeField] Transform debugAimPoint;
+    [SerializeField] private Transform rifle;
+    [SerializeField] private AimPoint aimPoint;
 
-    [SerializeField] float firingAngle = 15.0f;
-    [SerializeField] float aimSpeed = 3.0f;
-    CapsuleCollider coll;
+    [SerializeField] private float firingAngle = 15.0f;
+    [SerializeField] private float aimSpeed = 3.0f;
+    private CircleCollider2D coll;
 
     private void Awake()
     {
         health = new Health(10);
 
-        coll = GetComponent<CapsuleCollider>();
+        coll = GetComponent<CircleCollider2D>();
     }
 
     private void OnEnable()
     {
         inputSystem.AimJoystick.OnHoldingStart += HandleHoldingStart;
         inputSystem.AimJoystick.OnHoldingStop += HandleHoldingStop;
-
         inputSystem.Fire.onClick.AddListener(Fire);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        if (HasCover) return;// No Cover
-         
-        Vector2 direction = inputSystem.MovementAxis;
-
-        aimPoint.Translate(
-            direction.x * aimSpeed * Time.deltaTime,
-            0.0f,
-            direction.y * aimSpeed * Time.deltaTime, Space.World);
-
-        transform.forward = aimPoint.position - transform.position;
+        inputSystem.OnFire.performed += HandleFire;
     }
 
     private void OnDisable()
@@ -53,27 +43,57 @@ public class Player : MonoBehaviour
         inputSystem.AimJoystick.OnHoldingStop -= HandleHoldingStop;
     }
 
+    void Update()
+    {
+        if (HasCover) return;// No Cover
+
+        aimPoint.Translate(inputSystem.MovementAxis(), in aimSpeed);
+
+        transform.up = (Vector3)aimPoint.WorldPoint - transform.position;
+    }
+
+    void HandleFire(InputAction.CallbackContext context)
+    {
+        Fire();
+    }
+
     [ContextMenu("Fire()")]
     void Fire()
     {
-        float aimDistance = (aimPoint.position - transform.position).magnitude;
+        Vector2 aimCircle = Random.insideUnitCircle * firingAngle;
 
-        Vector3 aimCircle = Random.onUnitSphere * firingAngle;
-        aimCircle.y = transform.position.y; // Makes it only shoot forward.
+        // Check if distance is too close to player 
+        float aimDistance = (aimCircle + aimPoint.WorldPoint - (Vector2)transform.position).magnitude;
+        if (aimDistance <= 1.0f) return; // Too close to self
 
-        Debug.DrawRay(transform.position, transform.forward * aimDistance + aimCircle, Color.red, 1.0f);
+        RaycastHit2D pointer = aimPoint.Raycast(transform.position, aimCircle);  //TODO: Check Layer Mask
 
-        if (Physics.Raycast(transform.position, transform.forward * aimDistance + aimCircle, out RaycastHit hit, aimDistance)) //TODO: Check Layer Mask
+        // Check if hit anything
+        Collider2D collider = pointer.collider;
+
+        var trail = ProjectileTrailPooler.Instance.Pool.Get();
+
+        if (!collider)
         {
-            Collider hitColl = hit.collider;
-            debugAimPoint.position = hit.point;
-            if (hitColl.CompareTag("Enemy"))
+            if (UnityEngine.Random.Range(0.0f, 1.0f) <= 0.8f) // 80% chance to shoot to shoot dirt
             {
-                Debug.Log("Hit Enemy");
+                trail.SetPositions(rifle.position, aimPoint.WorldPoint + aimCircle);
             }
-            else if(hitColl.CompareTag("Level"))
+            else // WildShot 20% chance
             {
-                Debug.Log("Hit Level");
+                trail.SetWildShot(rifle.position, transform.up, aimCircle);
+            }
+        }
+        else
+        {
+            if (collider.CompareTag("Enemy"))
+            {
+                var enemy = collider.GetComponent<Enemy>();
+
+                enemy.SpawnBlood(pointer.point, transform.position);
+                enemy.TakeDamage(attackPoints);
+
+                trail.SetPositions(rifle.position, pointer.point);
             }
         }
     }
@@ -81,7 +101,7 @@ public class Player : MonoBehaviour
     private void HandleHoldingStop()
     {
         aimPoint.gameObject.SetActive(false);
-        aimPoint.position = transform.position;
+        aimPoint.SetRectPosition(transform.position);
 
         Cover();
     }
@@ -89,7 +109,7 @@ public class Player : MonoBehaviour
     private void HandleHoldingStart()
     {
         aimPoint.gameObject.SetActive(true);
-        aimPoint.position = transform.position;
+        aimPoint.SetRectPosition(transform.position);
 
         Uncover();
     }
@@ -104,6 +124,16 @@ public class Player : MonoBehaviour
     void Uncover()
     {
         coll.enabled = true;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health.TakeDamage(damage);
+    }
+
+    public void SpawnBlood(Vector3 at, Vector3 up)
+    {
+
     }
 
     bool HasCover => !coll.enabled;

@@ -37,7 +37,7 @@ public class Projectile : MonoBehaviour
 
     private void BackToPooler()
     {
-        PlayerBulletPooler.Instance.Pool.Release(this);
+        //ProjectileTrailPooler.Instance.Pool.Release(this);
     }
 
     public void ResestTime()

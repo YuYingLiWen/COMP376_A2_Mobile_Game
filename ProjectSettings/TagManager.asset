@@ -42,3 +42,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Sky
+    uniqueID: 2434429971
+    locked: 0
+  - name: Middle
+    uniqueID: 782128813
+    locked: 0
+  - name: Land
+    uniqueID: 3508445455
+    locked: 0

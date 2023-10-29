@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     /// The following are serizlized for debugging purposes
     [SerializeField] private SceneDirector sceneDirector = null;
     [SerializeField] private LevelManager levelManager = null;
-    [SerializeField] private InputSystem inputSystem = null;
+    [SerializeField] private GameInputSystem inputSystem = null;
     [SerializeField] private AudioManager audioManager = null;
 
     // Game Pause
@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        inputSystem = gameObject.GetComponentInChildren<InputSystem>();
+        inputSystem = gameObject.GetComponentInChildren<GameInputSystem>();
         if (!inputSystem) Debug.LogError("Missing Input System", gameObject);
 
         audioManager = gameObject.GetComponentInChildren<AudioManager>();
@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public InputSystem GetInputSystem() => inputSystem;
+    public GameInputSystem GetInputSystem() => inputSystem;
 
     private const string LEVEL_MANAGER = "LevelManager";
 }

@@ -25,8 +25,11 @@ public class VirtualJoystick : MonoBehaviour, IPointerUpHandler, IPointerDownHan
     /// <summary>
     ///  The X, Y position for the joystick.
     /// </summary>
-    public Vector2 GetAxis() => axis;
-
+    public Vector2 GetAxis()
+    {
+        //Debug.Log(gameObject.name + " : "+ axis);
+        return axis;
+    }
 
     private void Awake()
     {

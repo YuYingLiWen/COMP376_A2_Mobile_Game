@@ -10,10 +10,10 @@ using UnityEngine.EventSystems;
 /// <summary>
 /// Goal: Handles Player Inputs
 /// </summary>
-public class InputSystem : MonoBehaviour
+public class GameInputSystem : MonoBehaviour
 {
-    private static InputSystem instance;
-    public static InputSystem Instance => instance;
+    private static GameInputSystem instance;
+    public static GameInputSystem Instance => instance;
 
     private GameManager gameManager;
 
@@ -23,14 +23,20 @@ public class InputSystem : MonoBehaviour
     private InputAction actionTouch1;
     private InputAction actionPointer;
     private InputAction actionMovement;
+    private InputAction actionFire;
+
+    public InputAction OnFire => actionFire;
 
     [SerializeField] private GraphicRaycaster graphicRaycaster;
     private EventSystem eventSystem;
 
     //Cache
-    private Vector3 movementAxis = Vector3.zero;
-    public Vector3 MovementAxis => movementAxis;
+    private Vector2 movementAxis = Vector3.zero;
+    public Vector2 MovementAxis() {
 
+        //Debug.Log("Input :"+movementAxis);
+        return movementAxis;
+    }
     // Fire Button
     [SerializeField] private Button fire;
     public Button Fire => fire;
@@ -51,6 +57,7 @@ public class InputSystem : MonoBehaviour
         actionPointer = inputs.actions["Pointer"];
         actionTouch0 = inputs.actions["Touch0"];
         actionTouch1 = inputs.actions["Touch1"];
+        actionFire = inputs.actions["Fire"];
 
         actionMovement = inputs.actions["Movement"];
     }
@@ -62,6 +69,7 @@ public class InputSystem : MonoBehaviour
         actionPointer.Enable();
         actionTouch0.Enable();
         actionTouch1.Enable();
+        actionFire.Enable();
 
         //actionPointer.performed += HandlePointer;
         actionTouch0.started += HandleMovementStarted;
@@ -74,7 +82,7 @@ public class InputSystem : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.GetInstance();
-        if (!gameManager) Debug.LogError("Missing GameManager.", gameObject);
+        if (!gameManager) Debug.LogWarning("Missing GameManager.", gameObject);
     }
 
     void Update()
@@ -87,6 +95,7 @@ public class InputSystem : MonoBehaviour
         actionPointer.Disable();
         actionTouch0.Disable();
         actionTouch1.Disable();
+        actionFire.Disable();
 
         inputs.DeactivateInput();
     }

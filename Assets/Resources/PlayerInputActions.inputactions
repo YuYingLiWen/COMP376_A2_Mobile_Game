@@ -2,7 +2,7 @@
     "name": "PlayerInputActions",
     "maps": [
         {
-            "name": "Touch",
+            "name": "Gameplay",
             "id": "df6636ab-573e-4dbb-a473-2ad4521e8e32",
             "actions": [
                 {
@@ -31,6 +31,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Movement",
+                    "type": "Value",
+                    "id": "d7cb42cf-17f2-424f-8b09-c67e1931fb67",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Rotate",
+                    "type": "Value",
+                    "id": "506be2fc-a2fa-4570-9266-af3635ebee79",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Fire",
+                    "type": "Button",
+                    "id": "2f26f721-6938-41bb-ac45-6b984b672ff9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -66,36 +93,10 @@
                     "action": "Touch1",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Gamepad",
-            "id": "36243ef4-cbf4-4262-b397-9bfc3cf1ada5",
-            "actions": [
-                {
-                    "name": "Movement",
-                    "type": "Value",
-                    "id": "f7d06e6b-f557-40e4-b95b-dc37016c1837",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 },
                 {
-                    "name": "Rotate",
-                    "type": "Value",
-                    "id": "fa8d08c8-13ea-4be1-b345-f3c2a3c84652",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                }
-            ],
-            "bindings": [
-                {
                     "name": "",
-                    "id": "111f3f3c-4941-4925-9f34-9991605abea0",
+                    "id": "0c5c674d-fd03-4d8e-a480-cb6de228e52b",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
@@ -106,7 +107,7 @@
                 },
                 {
                     "name": "",
-                    "id": "05c751a3-62be-4567-a89f-e403b8d53112",
+                    "id": "bf33ca59-b5bf-4079-8340-7bfcda1961e7",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
@@ -114,14 +115,19 @@
                     "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4e5d6e35-6940-400d-9720-63f5f0e3f310",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
-        },
-        {
-            "name": "KeyboardMouse",
-            "id": "4a7a52e1-eef0-41fc-b111-8a0c6081eed0",
-            "actions": [],
-            "bindings": []
         }
     ],
     "controlSchemes": [
