@@ -10,6 +10,8 @@ namespace DialogueTreeSpace
         [SerializeField] private string treeName;
         [SerializeField] private string path;
 
+        public string GetName() => treeName;
+
         private Node root;
         public Node GetTree() => root;
 
