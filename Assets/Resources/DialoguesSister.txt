@@ -1,0 +1,21 @@
+id 	modifier	modifier value 	dialogue	option0_nextid 	option0_text	option1_nextid	option1_text	# Modifier = NONE, ATTACK, HP, SPEED, SPREAD
+0	none	0	Big brother! Do you want to play dolls with me?	1	Yes	2	No	
+1	spread	1	Yay! Do you want to be Louise or Henry this time?	5	Henry, please.	4	Louise, please.	
+2	attack	-1	Blehh! Before you leave with your friends on a voyage. At least play with me one last time.	1	Fine, just for a little bit. My friends will be mad if I arrive late.	3	Sorry Claire but I am really in a hurry. We can play, to our hearts content when I get back!	
+3	hp	-1	I hate you! You are leaving me and mom without even saying anything!	8	When I come back, I promise I will play with dolls with you until late a night and bring back lots of candies for you and the dolls.	9	I am really sorry Claire but big brother is really in a hurry this time.	
+4	speed	1	Here you go! Louise is sad that Henry doesn't love her.	7	Henry needs to become more courageous.	6	I am sure Henry loves her very much!	
+5	spread	1	Here you go! Henry is in love with Louise but he is too scared of confessing.	7	Yeah, Henry is scared.	6	He loves her very much!	
+6	attack	1	Why doesn't he tell her then since he loves her that much?	14	Maybe he think she will reject him?	15	Maybe he is be going somewhere far away and doesn't want to break her heart.	
+7	hp	1	Hmmm... Then Henry need to tell her his feelings because if something bad happens to him then she will never know.	14	That is correct!	15	That might be the reason he is scared of telling her.	
+8	none	0	You promise?!?	12	Sure.	13	I promise.	
+9	spread	1	I hate you! I hate you! I hate you!	10	Claire, can you promise me to take care of mom when I am gone?	11	Please don't say that! I am doing this for you and mom!	
+10	none	0	Okay...	19	Thank you Claire...	11	Haha jokes on you	
+11	hp	-1	(cries) You are so mean!	18	Claire you are too young to understand.	19	I am sorry, but I am a hurry.	
+12	none	0	That is not a promise! You have to promise me!	18	You are too young. You will forget  our promise after you grow up.	17	I promise you.	
+13	spread	-1	Liar, liar, pants on fire?	18	Hahaha! Adults lie all the time - Claire. You are too young to understand.	17	Liar, liar pants on fire.	
+14	attack	-1	I wish Henry good luck!	16	Hmmm, this is hard to explain but it is all in the head.	19	Great! Now please go play outside for a bit.	
+15	hp	1	Oh, is this reverse psychology?	16	Wow Claire! You understand some bigs words!	19	Great! Now please go play outside for a bit.	
+16	speed	1	Thank you big brother! Oh! Mom also wanted to talk to you.	-1		-1		
+17	spread	-1	Thank you. I will remember our promise.	16	Great! Now please go play outside for a bit.	19	Thank you Claire...	
+18	hp	-1	I am not too young! I want to understand! I want to understand...	19	Claire...	10	Wait for me when I come back with mom's medicines.	
+19	hp	-1	Mom wants to talk to you before you leave...	-1		-1		

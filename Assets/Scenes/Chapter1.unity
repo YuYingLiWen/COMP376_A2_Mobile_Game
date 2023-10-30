@@ -688,7 +688,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 200}
+  m_SizeDelta: {x: 0, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1083773535
 MonoBehaviour:
@@ -708,7 +708,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 10
+  m_Spacing: 100
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
@@ -1579,8 +1579,9 @@ GameObject:
   - component: {fileID: 1907417014}
   - component: {fileID: 1907417016}
   - component: {fileID: 1907417017}
+  - component: {fileID: 1907417018}
   m_Layer: 0
-  m_Name: Dialogue Test
+  m_Name: 'Dialogue '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1613,7 +1614,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca49b30146a22747967315317e0c2d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 1907417017}
+  treeSister: {fileID: 1907417017}
+  treeMom: {fileID: 1907417018}
 --- !u!114 &1907417017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1626,6 +1628,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23165d59f4940ce49834b22da6ba0974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  treeName: Sister Tree
+  path: DialoguesSister
+--- !u!114 &1907417018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907417013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23165d59f4940ce49834b22da6ba0974, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  treeName: Mom Tree
+  path: DialoguesMom
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

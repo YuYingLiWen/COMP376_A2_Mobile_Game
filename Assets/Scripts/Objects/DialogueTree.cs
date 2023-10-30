@@ -3,94 +3,114 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-public class DialogueTree : MonoBehaviour
+namespace DialogueTreeSpace 
 {
-    private const string path = "Dialogues";
-    private Node root;
-
-
-    private void Awake()
+    public class DialogueTree : MonoBehaviour
     {
-        try 
+        [SerializeField] private string treeName;
+        [SerializeField] private string path;
+
+        private Node root;
+        public Node GetTree() => root;
+
+        [SerializeField] private List<Node> dialogueNodes = new();
+        public Node GetNode(int id)
         {
-            var dialogueFile = Resources.Load(path) as TextAsset;
-            var lines = dialogueFile.text.Split("\r\n");
-
-            List<Node> nodes = new(); // Cache for ease of access
-
-            foreach (var line in lines )
+            foreach(Node n in dialogueNodes)
             {
-                print(line);
+                if(n.id == id) return n;
+            }
 
-                if (line[0] == '#' || string.IsNullOrEmpty(line)) continue;
+            return null;
+        }
 
-                string[] chunks = line.Split(','); // id = 0; parent = 1; modifier = 2; modifier value = 3; dialogue = 4
+        private void Awake()
+        {
+            ReadFromFile(path);
+        }
 
-                Node.Modifier modifier = new()
+
+        void ReadFromFile(string fileName)
+        {
+            try
+            {
+                var dialogueFile = Resources.Load(fileName) as TextAsset;
+                var lines = dialogueFile.text.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
+
+                for (int i = 1; i < lines.Length; i++) // Skips file header
                 {
-                    category = Node.Convert(chunks[2]),
-                    value = Convert.ToInt32(chunks[3])
-                };
+                    if (string.IsNullOrEmpty(lines[i])) continue;
 
-                Node n = new(Convert.ToInt32(chunks[0]), modifier, chunks[4]);
+                    string[] chunks = lines[i].Split('\t');
 
-                nodes.Add(n);
+                    string temp = "";
+                    foreach (string s in chunks) temp += s + " || ";
+                    print(temp);
 
-                if (n.id == 0) root = n;
-
-                // Attach to parent
-                foreach (Node nd in nodes)
-                {
-                    if (nd.id == Convert.ToInt32(chunks[1]))
+                    Node newNode = new()
                     {
-                        nd.children.Add(n);
-                    }
+                        id = int.Parse(chunks[0]),
+                        modifier = new DialogueModifier()
+                        {
+                            category = DialogueModifier.Convert(chunks[1]),
+                            value = int.Parse(chunks[2])
+                        },
+                        dialogue = chunks[3]
+                    };
+
+                    newNode.options.Add(new DialogueOption()
+                    {
+                        nextId = int.Parse(chunks[4]),
+                        dialogue = chunks[5],
+                    });
+
+                    newNode.options.Add(new DialogueOption()
+                    {
+                        nextId = int.Parse(chunks[6]),
+                        dialogue = chunks[7],
+                    });
+
+                    dialogueNodes.Add(newNode);
+
+                    if (newNode.id == 0) root = newNode;
                 }
             }
-        }
-        catch(Exception e)
-        {
-            print(e.ToString() + " aka path DNE.");
+            catch (Exception e)
+            {
+                print(e.ToString());
+            }
         }
     }
 
-    public Node GetTree() => root;
-    //////
+    public struct DialogueOption
+    {
+        public string dialogue;
+        public int nextId;
+    }
 
-
-
-    //////
-    public struct Node
+    public class Node
     {
         public int id;
-        public string dialog;
-        public List<Node> children;
-        public Modifier modifier;
+        public string dialogue;
+        public DialogueModifier modifier;
+        public List<DialogueOption> options = new(); // The dialogue option to pick in order to get to this node
+    }
 
-        public Node(int id, Modifier modifier, string dialog)
-        {
-            this.id = id;
-            this.dialog = dialog;
-            this.children = new();
-            this.modifier = modifier;
-        }
+    public struct DialogueModifier
+    {
+        public enum Category { NONE, ATTACK, HIT_POINTS, SPEED, SPREAD }
 
-        public struct Modifier
-        {
-            public enum Category { NONE, ATTACK, HIT_POINTS, SPEED, SPREAD }
+        public Category category;
+        public int value;
 
-            public Category category;
-            public int value;
-        }
-
-        public static Modifier.Category Convert(string modifier)
+        public static Category Convert(string modifier)
         {
             modifier = modifier.ToUpper();
-            if (modifier == "ATTACK") return Modifier.Category.ATTACK;
-            else if (modifier == "HP") return Modifier.Category.HIT_POINTS;
-            else if (modifier == "SPEED") return Modifier.Category.SPEED;
-            else if (modifier == "SPREAD") return Modifier.Category.SPREAD;
-            else return Modifier.Category.NONE;
+            if (modifier == "ATTACK") return Category.ATTACK;
+            else if (modifier == "HP") return Category.HIT_POINTS;
+            else if (modifier == "SPEED") return Category.SPEED;
+            else if (modifier == "SPREAD") return Category.SPREAD;
+            else return Category.NONE;
         }
     }
 }
