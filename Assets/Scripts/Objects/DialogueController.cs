@@ -2,11 +2,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using DialogueTreeSpace;
 
-public class Dialogue : MonoBehaviour
+using TMPro;
+
+public class DialogueController : MonoBehaviour
 {
     [SerializeField] private DialogueTree treeSister;
     [SerializeField] private DialogueTree treeMom;
 
+    [SerializeField]
+    private TextMeshProUGUI dialogueBox;
+
+    [SerializeField]
+    private TextMeshProUGUI option0box;
+
+    [SerializeField]
+    private TextMeshProUGUI option1box;
+
+    [SerializeField]
+    private TextMeshProUGUI consquenceBox;
 
     void Start()
     {
