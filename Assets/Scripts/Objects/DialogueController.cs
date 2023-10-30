@@ -10,7 +10,7 @@ public class DialogueController : MonoBehaviour
     GameManager gameManager;
 
     [SerializeField] private DialogueTree treeSister;
-    [SerializeField] private DialogueTree treeMom;
+    [SerializeField] private DialogueTree treeWilliam;
 
     [SerializeField] private TextMeshProUGUI nameSpeaker;
     [SerializeField] private TextMeshProUGUI dialogueBox;
@@ -23,21 +23,12 @@ public class DialogueController : MonoBehaviour
     [SerializeField] private Button option0Button;
     [SerializeField] private Button option1Button;
 
-/*    [SerializeField] private Button option0ButtonMom;
-    [SerializeField] private Button option1ButtonMom;*/
-
-   /* [SerializeField] private GameObject momPanel;
-    [SerializeField] private GameObject sisterPanel;*/
-
 
     private int dialogueCounter = 1;
     private int sumPoints = 0;
 
     Node currentNode;
     DialogueTree currentTree;
-
-/*    UnityEngine.Events.UnityAction option0Action;
-    UnityEngine.Events.UnityAction option1Action;*/
 
     private void Awake()
     {
@@ -46,7 +37,7 @@ public class DialogueController : MonoBehaviour
     void Start()
     {
         //ReadTree(treeSister);
-        //ReadTree(treeMom);
+        //ReadTree(treeWilliam);
 
         gameManager = GameManager.GetInstance();
 
@@ -59,47 +50,25 @@ public class DialogueController : MonoBehaviour
         currentTree = tree;
         currentNode = tree.GetTree();
         nameSpeaker.text = tree.GetName();
-        Debug.Log(currentNode == null);
 
-        //SetOptionButtons(tree);
-        //if (tree.GetName() != "Mom") SetOptionButtons(tree);
-        //else SetOptionMomButtons(tree);
-
+        SetOptionButtons(tree);
         DisplayDialogueNode(currentNode);
     }
 
     private void SetOptionButtons(DialogueTree tree)
     {
-        Debug.Log($"{tree.GetName()} {currentNode} {currentNode.options}");
+        //Debug.Log($"{tree.GetName()} {currentNode} {currentNode.options}");
 
-        //option0Action = new UnityEngine.Events.UnityAction(() => Option(tree, currentNode.options[0].nextId));
-        //option1Action = new UnityEngine.Events.UnityAction(() => Option(tree, currentNode.options[1].nextId));
+        option0Button.onClick.RemoveAllListeners();
+        option1Button.onClick.RemoveAllListeners();
 
-        //option0ButtonSister.onClick.AddListener(option0Action);
-        //option0ButtonSister.onClick.AddListener(IncreaseDialogueCounter);
-        
-        //option1ButtonSister.onClick.AddListener(option1Action);
-        //option1ButtonSister.onClick.AddListener(IncreaseDialogueCounter);
-        Debug.Log("Listener added.");
+        option0Button.onClick.AddListener(() => Option(tree, currentNode.options[0].nextId));
+        option0Button.onClick.AddListener(IncreaseDialogueCounter);
+
+        option1Button.onClick.AddListener(() => Option(tree, currentNode.options[1].nextId));
+        option1Button.onClick.AddListener(IncreaseDialogueCounter);
+        //Debug.Log("Listener added.");
     }
-
-/*    private void SetOptionMomButtons(DialogueTree tree)
-    {
-        //sisterPanel.SetActive(false); // Disable the sister button panel
-        //momPanel.SetActive(true);
-
-        Debug.Log($"{tree.GetName()} {currentNode} {currentNode.options}");
-
-        //option0Action = new UnityEngine.Events.UnityAction(() => Option(tree, currentNode.options[0].nextId));
-        //option1Action = new UnityEngine.Events.UnityAction(() => Option(tree, currentNode.options[1].nextId));
-
-        option0ButtonMom.onClick.AddListener(option0Action);
-        option0ButtonMom.onClick.AddListener(IncreaseDialogueCounter);
-                     
-        option1ButtonMom.onClick.AddListener(option1Action);
-        option1ButtonMom.onClick.AddListener(IncreaseDialogueCounter);
-        Debug.Log("Listener added.");
-    }*/
 
     void DisplayDialogueNode(Node node)
     {
@@ -119,10 +88,14 @@ public class DialogueController : MonoBehaviour
 
     void Option(DialogueTree tree, int nextId)
     {
-        if (nextId == -1 && tree.GetName() == "Mom") SceneDirector.GetInstance().Load("Chapter2", true) ; // Load chapter 2;
-        if (nextId == -1)
+        if (nextId == -1 && tree.GetName() == "William")
         {
-            PlayTree(treeMom);
+            SceneDirector.GetInstance().Load("Chapter2", true); // Load chapter 2;
+            return;
+        }
+        else if (nextId == -1)
+        {
+            PlayTree(treeWilliam);
             return;
         }
 
@@ -130,16 +103,16 @@ public class DialogueController : MonoBehaviour
         DisplayDialogueNode(currentNode);
     }
 
-    void DEBUG()
+    /*void DEBUG()
     {
 
         Debug.Log($"{currentNode == null}");
         Debug.Log($"{currentTree == null}");
         Debug.Log($"{currentTree.GetName()} {currentTree}");
         Debug.Log($"Curr Tree: {currentTree} | Curr Node: {currentNode} | CurrNode Options: {currentNode.options}");
-    }
+    }*/
 
-    void IncreaseDialogueCounter() { Debug.Log("Increased Counter.");  dialogueCounter += 1; }
+    void IncreaseDialogueCounter() { dialogueCounter += 1; }
 
     // For button click
     public Node GetNode( int nextId)
@@ -169,10 +142,10 @@ public class DialogueController : MonoBehaviour
         }
     }
 
-    // Persistent
+/*    // Persistent
     public void ClickedOption0Button()
     {
-        DEBUG();
+        //DEBUG();
         Option(currentTree, currentNode.options[0].nextId);
         IncreaseDialogueCounter();
     }
@@ -180,8 +153,8 @@ public class DialogueController : MonoBehaviour
     // Persistent
     public void ClickedOption1Button()
     {
-        DEBUG();
+        //DEBUG();
         Option(currentTree, currentNode.options[1].nextId);
         IncreaseDialogueCounter();
-    }
+    }*/
 }

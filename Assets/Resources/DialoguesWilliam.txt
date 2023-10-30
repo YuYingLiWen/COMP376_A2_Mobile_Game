@@ -16,4 +16,4 @@ id 	modifier	modifier value 	dialogue	option0_nextid 	option0_text	option1_nexti
 14	attack	1	Thank you...	17	...	11	She will also be waiting to play dolls with you.	
 15	hp	1	.....	17	(Continue to embrace)	14	I will pray for your return	
 16	spread	-1	I promise...	15	(Gives him a big hug)	17	I pray for your return.	
-17	none	0	I won't forget.	-1		-1		
+17	none	0	I won't forget.	-1	Stay strong!	-1	God speed!	

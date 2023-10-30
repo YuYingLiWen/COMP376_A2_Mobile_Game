@@ -15,7 +15,7 @@ id 	modifier	modifier value 	dialogue	option0_nextid 	option0_text	option1_nexti
 13	spread	-1	Liar, liar, pants on fire?	18	Hahaha! Adults lie all the time - Claire. You are too young to understand.	17	Liar, liar pants on fire.	
 14	attack	-1	I wish Henry good luck!	16	Hmmm, this is hard to explain but it is all in the head.	19	Great! Now please go play outside for a bit.	
 15	hp	1	Oh, is this reverse psychology?	16	Wow Claire! You understand some bigs words!	19	Great! Now please go play outside for a bit.	
-16	speed	1	Thank you big brother! Oh! Mom also wanted to talk to you.	-1		-1		
+16	speed	1	Thank you big brother! Oh! Mom also wanted to talk to you.	-1	Okay	-1	Ok	
 17	spread	-1	Thank you. I will remember our promise.	16	Great! Now please go play outside for a bit.	19	Thank you Claire...	
 18	hp	-1	I am not too young! I want to understand! I want to understand...	19	Claire...	10	Wait for me when I come back with mom's medicines.	
-19	hp	-1	Mom wants to talk to you before you leave...	-1		-1		
+19	hp	-1	Mom wants to talk to you before you leave...	-1	Okay	-1	Ok	
