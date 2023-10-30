@@ -27,6 +27,6 @@ public class MainMenuController : MonoBehaviour
     public void LoadLevel1()
     {
         Debug.Log("Clieck load ");
-        sceneDirector.Load(SceneDirector.SceneNames.LEVEL1_SCENE, true);
+        sceneDirector.Load(SceneDirector.SceneNames.CHAPTER1_SCENE, true);
     }
 }

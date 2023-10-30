@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float cameraScrollSpeed = 1.0f;
 
     private GameManager gameManager;
-    private GameInputSystem inputSystem;
+    //private GameInputSystem inputSystem;
 
     public Action OnGameOver;
     public Action OnGameWon;
@@ -27,7 +27,7 @@ public class LevelManager : MonoBehaviour
         gameManager = GameManager.GetInstance();
         if (!gameManager) Debug.LogError("Missing Game Manager", gameObject);
 
-        inputSystem = gameManager.GetInputSystem();
+        //inputSystem = gameManager.GetInputSystem();
     }
 
     private void OnEnable()

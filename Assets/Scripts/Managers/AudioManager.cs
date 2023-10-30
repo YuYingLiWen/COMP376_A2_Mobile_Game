@@ -1,19 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.Audio;
 
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField] private List<AudioClip> dayBackgroundMusics;
-    [SerializeField] private List<AudioClip> nightBackgroundMusics;
     [SerializeField] private AudioClip mainMenuMusic;
     [SerializeField] private AudioClip volumeMusic;
 
     private AudioSource source;
-
-    private int nightIndex = 0, dayIndex = 0;
 
     private AudioMixer mixer;
 
@@ -36,14 +31,6 @@ public class AudioManager : MonoBehaviour
     public void PlayNext() //TODO when has gameplay
     {
         Stop();
-
-        // if night
-        nightIndex++;
-
-        // if day
-        dayIndex++;
-
-
     }
 
     private void ChangeTrack(string sceneName)

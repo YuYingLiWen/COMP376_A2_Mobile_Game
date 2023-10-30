@@ -15,11 +15,11 @@ public class GameManager : MonoBehaviour
     /// The following are serizlized for debugging purposes
     [SerializeField] private SceneDirector sceneDirector = null;
     [SerializeField] private LevelManager levelManager = null;
-    [SerializeField] private GameInputSystem inputSystem = null;
+    //[SerializeField] private GameInputSystem inputSystem = null;
     [SerializeField] private AudioManager audioManager = null;
 
     // Game Pause
-    private enum GameState { PLAY, PAUSED, MAIN_MENU, CREDITS };
+    private enum GameState { PLAY, PAUSED, MAIN_MENU, CHAPTER1, CHAPTER2, CREDITS };
     private GameState currentGameState = GameState.MAIN_MENU;
 
     public Action OnGamePause;
@@ -42,8 +42,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        inputSystem = gameObject.GetComponentInChildren<GameInputSystem>();
-        if (!inputSystem) Debug.LogError("Missing Input System", gameObject);
+        /*inputSystem = gameObject.GetComponentInChildren<GameInputSystem>();
+        if (!inputSystem) Debug.LogError("Missing Input System", gameObject);*/
 
         audioManager = gameObject.GetComponentInChildren<AudioManager>();
         if (!audioManager) Debug.LogError("Missing Audio Manager", gameObject);
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
 
         currentGameState = GameState.PLAY;
 
-        inputSystem.enabled = true;
+       // inputSystem.enabled = true;
     }
 
     public void HandleCreditsSceneActivation()
@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
     }
     
 
-    public GameInputSystem GetInputSystem() => inputSystem;
+    //public GameInputSystem GetInputSystem() => inputSystem;
 
-    private const string LEVEL_MANAGER = "LevelManager";
+    //private const string LEVEL_MANAGER = "LevelManager";
 }

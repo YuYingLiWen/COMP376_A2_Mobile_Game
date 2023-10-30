@@ -21,7 +21,8 @@ public class SceneDirector : MonoBehaviour
     public class SceneNames
     {
         public const string MAIN_MENU_SCENE = "MainMenuScene";
-        public const string LEVEL1_SCENE = "Level1";
+        public const string CHAPTER1_SCENE = "Chapter1";
+        public const string CHAPTER2_SCENE = "Chapter2";
     }
 
     private void Awake()
