@@ -43,9 +43,9 @@ namespace DialogueTreeSpace
 
                     string[] chunks = lines[i].Split('\t');
 
-                    string temp = "";
+/*                    string temp = "";
                     foreach (string s in chunks) temp += s + " || ";
-                    print(temp);
+                    print(temp);*/
 
                     Node newNode = new()
                     {

@@ -31,12 +31,10 @@ public class GameManager : MonoBehaviour
 
         sceneDirector = SceneDirector.GetInstance();
         if (!sceneDirector) Debug.LogError("Missing Scene Director.", gameObject);
-
     }
 
     private void OnEnable()
     {
-        OnGamePause += HandleGamePause;
         sceneDirector.OnSceneActivated += HandleLevelSceneActivation;
         sceneDirector.OnSceneActivated += HandleMainMenuSceneActivation;
 
@@ -53,7 +51,6 @@ public class GameManager : MonoBehaviour
 
     private void OnDisable()
     {
-        OnGamePause -= HandleGamePause;
     }
 
     public void HandleLevelSceneActivation(string sceneName)
@@ -89,22 +86,7 @@ public class GameManager : MonoBehaviour
     {
 
     }
-
-    private void HandleGamePause()
-    {
-        if      (currentGameState == GameState.PLAY)   currentGameState = GameState.PAUSED;
-        else if (currentGameState == GameState.PAUSED) currentGameState = GameState.PLAY;
-
-
-        if (currentGameState == GameState.PAUSED) // Show pause menu
-        {
-
-        }
-        else // hide pause menu
-        {
-
-        }
-    }
+    
 
     public GameInputSystem GetInputSystem() => inputSystem;
 
