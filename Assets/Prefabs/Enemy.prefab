@@ -221,7 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   so: {fileID: 11400000, guid: 93315edce04db6b499e23e0ee63ebb1c, type: 2}
   rifle: {fileID: 5146057499867487365}
-  firingAngle: 3
+  firingAngle: 7
   delayBtwnShots: 3
 --- !u!58 &5674564971118331111
 CircleCollider2D:
@@ -350,7 +350,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af87e5dc9b0227d4aad919d42e0ec2f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: 0
 --- !u!1 &9133174369011868175
 GameObject:
   m_ObjectHideFlags: 0

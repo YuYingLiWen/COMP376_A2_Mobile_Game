@@ -1,6 +1,6 @@
 
 using System.Collections.Generic;
-
+using Unity.Properties;
 using UnityEngine;
 
 
@@ -9,6 +9,9 @@ public class Trench: MonoBehaviour
     private static List<IActor> actors;
 
     public static Player player;
+
+    const int takenOverNum = 5;
+    int currentCount = 0;
 
     public static IActor GetRandomActor()
     {
@@ -26,6 +29,19 @@ public class Trench: MonoBehaviour
         {
             player = collision.GetComponent<Player>();
             Debug.Log("New Ally join the trench");
+        }
+        else if (collision.CompareTag("Enemy"))
+        {
+            currentCount += 1;
+            if (currentCount >= takenOverNum) FindAnyObjectByType<LevelManager>().GameOver();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Enemy"))
+        {
+            currentCount -= 1;
         }
     }
 }
