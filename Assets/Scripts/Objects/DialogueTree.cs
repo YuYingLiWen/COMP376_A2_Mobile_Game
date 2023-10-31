@@ -110,9 +110,18 @@ namespace DialogueTreeSpace
             modifier = modifier.ToUpper();
             if (modifier == "ATTACK") return Category.ATTACK;
             else if (modifier == "HP") return Category.HIT_POINTS;
-            else if (modifier == "SPEED") return Category.SPEED;
-            else if (modifier == "SPREAD") return Category.SPREAD;
+            else if (modifier == "SPEED") return Category.SPEED; // Reload speed
+            else if (modifier == "SPREAD") return Category.SPREAD; // 
             else return Category.NONE;
         }
     }
+}
+
+
+public struct PlayerDataModifier
+{
+    public int attack;
+    public int hp;
+    public int speed;
+    public int spread;
 }

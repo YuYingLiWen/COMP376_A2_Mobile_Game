@@ -15,6 +15,11 @@ public class FootSoldierEnemySpawner : MonoBehaviour
 
     [SerializeField] private int enemyCountPerWave = 3;
 
+    public void IncreaseEnemyCountPerWave()
+    {
+        enemyCountPerWave += 1;
+    }
+
     private void Awake()
     {
         cam = Camera.main;
@@ -38,7 +43,7 @@ public class FootSoldierEnemySpawner : MonoBehaviour
         {
             Enemy enemy = FootSoldierEnemyPooler.Instance.Pool.Get();
 
-            enemy.SetPosition(outOfBoundUp + Vector3.right * Random.Range(-0.48f, 0.48f) * cam.orthographicSize);
+            enemy.SetPosition(outOfBoundUp + Vector3.right * Random.Range(-0.48f, 0.48f) * (cam.orthographicSize -3.0f));
         }
 
     }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DialogueTreeSpace;
 using TMPro;
 
@@ -29,10 +30,6 @@ public class DialogueController : MonoBehaviour
 
     Node currentNode;
     DialogueTree currentTree;
-
-    private void Awake()
-    {
-    }
 
     void Start()
     {
@@ -79,7 +76,7 @@ public class DialogueController : MonoBehaviour
         option1box.text = node.options[1].dialogue;
 
         if (dialogueCounter == 0) winrateBox.text = "Win rate: 50%";
-        else winrateBox.text = "Win rate: " + ((double)sumPoints / (double)dialogueCounter) + "%";
+        else winrateBox.text = "Win rate: " + (int)(((double)sumPoints / (double)dialogueCounter) * 100.0f) +"%";// * 5.0f > 100.0f? 100.0f : (double)sumPoints * 5.0f)   + "%";
 
         dialogueCounterBox.text = "Dialogue: " + dialogueCounter.ToString();
 
@@ -101,6 +98,29 @@ public class DialogueController : MonoBehaviour
 
         currentNode = GetNode(nextId);
         DisplayDialogueNode(currentNode);
+        AddPlayerModifiers(currentNode);
+    }
+
+    private void AddPlayerModifiers(Node currentNode)
+    {
+        sumPoints += currentNode.modifier.value;
+        if (currentNode.modifier.category == DialogueModifier.Category.SPREAD) 
+        {
+            GameManager.GetInstance().playerModifier.spread += currentNode.modifier.value;
+        }
+        else if(currentNode.modifier.category == DialogueModifier.Category.SPEED)
+        {
+            GameManager.GetInstance().playerModifier.speed += currentNode.modifier.value;
+        }
+        else if(currentNode.modifier.category == DialogueModifier.Category.HIT_POINTS)
+        {
+            GameManager.GetInstance().playerModifier.hp += currentNode.modifier.value;
+        }
+        else if(currentNode.modifier.category == DialogueModifier.Category.ATTACK)
+        {
+            GameManager.GetInstance().playerModifier.attack += currentNode.modifier.value;
+        }
+        Debug.Log($"{currentNode.modifier.category} | {currentNode.modifier.value} ");
     }
 
     /*void DEBUG()

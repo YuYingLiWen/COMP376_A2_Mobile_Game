@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LevelManager levelManager = null;
     [SerializeField] private AudioManager audioManager = null;
 
+    public bool HasWon = false;
+
+    public PlayerDataModifier playerModifier;
+
     // Game Pause
     private enum GameState { PLAY, PAUSED, MAIN_MENU, CHAPTER1, CHAPTER2, CREDITS };
     private GameState currentGameState = GameState.MAIN_MENU;
@@ -65,11 +69,12 @@ public class GameManager : MonoBehaviour
 
     public void HandleGameOver()
     {
-
+        HasWon = false;
     }
 
     public void HandleGameWon()
     {
-
+        HasWon = true;
     }
 }
+

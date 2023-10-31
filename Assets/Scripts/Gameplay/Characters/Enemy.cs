@@ -1,7 +1,6 @@
 using System.Collections;
 
 using UnityEngine;
-using static UnityEngine.UI.Image;
 
 public class Enemy : MonoBehaviour, IActor
 {
@@ -23,6 +22,9 @@ public class Enemy : MonoBehaviour, IActor
     [SerializeField] float firingAngle = 1.0f;
 
     [SerializeField] float delayBtwnShots = 3.0f;
+
+    static LevelManager levelManager = null;
+
     private void Awake()
     {
         gameObject.name = so.Name;
@@ -33,24 +35,28 @@ public class Enemy : MonoBehaviour, IActor
         rend = GetComponent<SpriteRenderer>();
         rend.sprite = so.sprite;
         rend.color = so.color;
+
+        rigid = GetComponent<Rigidbody2D>();
     }
 
     private void OnEnable()
     {
         health.SetPoints(so.HitPoints);
-    }
-
-    private void Start()
-    {
-        rigid = GetComponent<Rigidbody2D>();
-
         rigid.velocity = -Vector2.up * so.Speed;
+        isUnderCover = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        isUnderCover = true;
-        rigid.velocity = Vector2.zero;
+        if(collision.CompareTag("Sandbag"))
+        {
+            isUnderCover = true;
+            rigid.velocity = Vector2.zero;
+        }
+        else if(collision.CompareTag("Barbwire"))
+        {
+            rigid.velocity /= 2;
+        }
     }
 
     private void Update()
@@ -69,11 +75,6 @@ public class Enemy : MonoBehaviour, IActor
         }
     }
 
-    private void OnDisable()
-    {
-        fireCoroutine = null;
-    }
-
     public void TakeDamage(int damage, Vector3 at, Vector3 up)
     {
         if (isUnderCover) damage -= 1;
@@ -84,6 +85,14 @@ public class Enemy : MonoBehaviour, IActor
 
         if(!health.IsAlive())
         {
+            if(!levelManager) levelManager = FindAnyObjectByType<LevelManager>();
+
+            levelManager.IncreaseKillCount();
+            
+            fireCoroutine = null;
+
+            StopAllCoroutines();
+
             FootSoldierEnemyPooler.Instance.Pool.Release(this);
         }
     }
@@ -124,12 +133,12 @@ public class Enemy : MonoBehaviour, IActor
         Vector3 aimDirection = (Vector2)(target.GetTransform().position - transform.position);
 
         RaycastHit2D pointer = Physics2D.Raycast(rifle.position, (Vector2)aimDirection + aimCircle, aimDirection.magnitude + aimCircle.magnitude, LayerMask.GetMask("Allies"));
-        Debug.DrawRay(rifle.position, aimDirection + (Vector3)aimCircle, Color.red, 5.0f);
+        //Debug.DrawRay(rifle.position, aimDirection + (Vector3)aimCircle, Color.red, 5.0f);
         // Check if hit anything
         Collider2D collider = pointer.collider;
 
-        if(collider) Debug.Log(collider.name);
-        else Debug.Log(" No Hit");
+/*        if(collider) Debug.Log(collider.name);
+        else Debug.Log(" No Hit");*/
 
         var trail = ProjectileTrailPooler.Instance.Pool.Get();
 

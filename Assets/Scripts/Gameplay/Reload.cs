@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,14 +10,15 @@ public class Reload : MonoBehaviour
     const int count = 5;
     int currentBullet = 5;
 
-    private bool canFire = true;
-    [SerializeField] private float reloadTime = 1.0f;
+    public bool canFire = true;
+    public float ReloadTime = 3.0f;
     private float elapsedReloadTime = 0.0f;
 
     public bool CanFire => canFire;
-
     public void OnFire()
     {
+        if (!canFire) return;
+
         currentBullet -= 1;
         bullets[currentBullet].SetActive(false);
 
@@ -34,22 +34,22 @@ public class Reload : MonoBehaviour
     {
         if (canFire) return; // If can fire then don't need reload.
 
-        if (elapsedReloadTime >= reloadTime)
+        if (elapsedReloadTime >= ReloadTime)
         {
-            canFire = true;
-            elapsedReloadTime = 0.0f;
             OnReloaded();
             return;
         }
 
-        reload.fillAmount = elapsedReloadTime / reloadTime;
+        reload.fillAmount = elapsedReloadTime / ReloadTime;
         elapsedReloadTime += Time.deltaTime;
     }
 
     void OnReloaded()
     {
+        canFire = true;
+        elapsedReloadTime = 0.0f;
         currentBullet = count;
-        reload.fillAmount = 0.0f;
+        reload.fillAmount = 1.0f;
         foreach(GameObject obj in bullets) obj.SetActive(true);
     }
 

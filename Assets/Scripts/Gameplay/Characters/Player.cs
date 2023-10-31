@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IActor
 {
+    [SerializeField] private int healthPoint = 10;
     [SerializeField] private int attackPoints = 5; // Damage per shot fired
 
     [SerializeField] private Health health;
@@ -12,29 +14,45 @@ public class Player : MonoBehaviour, IActor
     [SerializeField] private Transform rifle;
     [SerializeField] private AimPoint aimPoint;
 
-    [SerializeField] private float firingAngle = 15.0f;
+    [SerializeField] private float firingAngle = 0.5f;
     [SerializeField] private float aimSpeed = 3.0f;
     private CircleCollider2D coll;
 
     [SerializeField] private Reload reload;
+
+    [SerializeField] private Image hpBar;
+
+    private AudioSource fireSFX;
 
     private void Awake()
     {
         health = GetComponent<Health>();
 
         coll = GetComponent<CircleCollider2D>();
+
+        fireSFX = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
     {
         inputSystem.AimJoystick.OnHoldingStart += HandleHoldingStart;
         inputSystem.AimJoystick.OnHoldingStop += HandleHoldingStop;
+
         inputSystem.Fire.onClick.AddListener(Fire);
     }
 
     private void Start()
     {
         inputSystem.OnFire.performed += HandleFire;
+
+
+        //Add modifiers
+        PlayerDataModifier mods = GameManager.GetInstance().playerModifier;
+
+        health.SetPoints(healthPoint + mods.hp);
+        attackPoints += mods.attack;
+        firingAngle += ((float)mods.spread / 2.0f);
+        reload.ReloadTime -= mods.speed;
     }
 
     private void OnDisable()
@@ -62,6 +80,7 @@ public class Player : MonoBehaviour, IActor
     {
         if (!reload.CanFire) return;
 
+        fireSFX.Play();
         reload.OnFire();// UI image bullet;
 
         Vector2 aimCircle = Random.insideUnitCircle * firingAngle;
@@ -138,9 +157,22 @@ public class Player : MonoBehaviour, IActor
         coll.enabled = true;
     }
 
+    [ContextMenu("Take DAmage")]
+    void debugTAke()
+    {
+        health.TakeDamage(1);
+        Debug.Log(health.GetPoints());
+        hpBar.fillAmount = health.GetHealthPercent();
+
+    }
+
     public void TakeDamage(int damage, Vector3 at, Vector3 up)
     {
         health.TakeDamage(damage);
+
+        hpBar.fillAmount = health.GetHealthPercent();
+
+        if (!health.IsAlive()) FindAnyObjectByType<LevelManager>().GameOver();
     }
 
     public void SpawnBlood(Vector3 at, Vector3 up)

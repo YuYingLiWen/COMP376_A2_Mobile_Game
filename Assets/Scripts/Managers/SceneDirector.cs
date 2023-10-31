@@ -23,6 +23,8 @@ public class SceneDirector : MonoBehaviour
         public const string MAIN_MENU_SCENE = "MainMenuScene";
         public const string CHAPTER1_SCENE = "Chapter1";
         public const string CHAPTER2_SCENE = "Chapter2";
+        public const string CREDITS_SCENE = "Credits";
+
     }
 
     private void Awake()
