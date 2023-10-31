@@ -16,9 +16,7 @@ public class Player : MonoBehaviour, IActor
     [SerializeField] private float aimSpeed = 3.0f;
     private CircleCollider2D coll;
 
-    private bool canFire = true;
-    [SerializeField] private float reloadTime = 1.0f;
-    private float elapsedReloadTime = 0.0f;
+    [SerializeField] private Reload reload;
 
     private void Awake()
     {
@@ -50,22 +48,9 @@ public class Player : MonoBehaviour, IActor
     void Update()
     {
         UpdateCover();
-        Reload();
     }
 
-    private void Reload()
-    {
-        if (canFire) return; // If can fire then don't need reload.
 
-        if (elapsedReloadTime >= reloadTime)
-        {
-            canFire = true;
-            elapsedReloadTime = 0.0f;
-            return;
-        }
-
-        elapsedReloadTime += Time.deltaTime;
-    }
 
     void HandleFire(InputAction.CallbackContext context)
     {
@@ -75,8 +60,9 @@ public class Player : MonoBehaviour, IActor
     [ContextMenu("Fire()")]
     void Fire()
     {
-        if (!canFire) return;
-        canFire = false;
+        if (!reload.CanFire) return;
+
+        reload.OnFire();// UI image bullet;
 
         Vector2 aimCircle = Random.insideUnitCircle * firingAngle;
 

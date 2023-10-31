@@ -30,22 +30,15 @@ public class GameManager : MonoBehaviour
 
         sceneDirector = SceneDirector.GetInstance();
         if (!sceneDirector) Debug.LogError("Missing Scene Director.", gameObject);
+
+        audioManager = AudioManager.Instance;
+        if (!audioManager) Debug.LogError("Missing Audio Manager", gameObject);
     }
 
     private void OnEnable()
     {
         sceneDirector.OnSceneActivated += HandleLevelSceneActivation;
         sceneDirector.OnSceneActivated += HandleMainMenuSceneActivation;
-
-    }
-
-    private void Start()
-    {
-        if (!audioManager) Debug.LogError("Missing Audio Manager", gameObject);
-    }
-
-    private void OnDisable()
-    {
     }
 
     public void HandleLevelSceneActivation(string sceneName)

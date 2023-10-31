@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -9,33 +7,38 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private float cameraScrollSpeed = 1.0f;
-
     private GameManager gameManager;
 
     public Action OnGameOver;
     public Action OnGameWon;
 
-    //Cache
-    private Camera cam;
+    /// Objectives
+    private const int killCount = 50;
+
+
+    bool debugMode = false;
 
     private void Awake()
     {
-        cam = Camera.main;
-
         gameManager = GameManager.GetInstance();
-        if (!gameManager) Debug.LogError("Missing Game Manager", gameObject);
-
+        if (!gameManager)
+        {
+            Debug.LogError("Missing Game Manager", gameObject);
+            debugMode = true;
+        }
     }
 
     private void OnEnable()
     {
+        if (debugMode) return;
         OnGameOver += gameManager.HandleGameOver;
         OnGameWon += gameManager.HandleGameWon;
     }
 
     private void OnDisable()
     {
+        if (debugMode) return;
+
         OnGameOver -= gameManager.HandleGameOver;
         OnGameWon -= gameManager.HandleGameWon;
     }
@@ -48,10 +51,5 @@ public class LevelManager : MonoBehaviour
     private void GameWon()
     {
         OnGameWon?.Invoke();
-    }
-
-    private void HandleMapScroll(Vector2 axis)
-    {
-        cam.transform.Translate(axis * Time.deltaTime);
     }
 }

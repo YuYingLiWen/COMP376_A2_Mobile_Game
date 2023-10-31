@@ -14,7 +14,8 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-
+        if (!instance) instance = this;
+        else Debug.LogWarning("Multiple " + this.GetType().Name, this);
     }
 
     void Start()
@@ -56,4 +57,7 @@ public class AudioManager : MonoBehaviour
     {
         source.Stop();
     }
+
+    private static AudioManager instance;
+    public static AudioManager Instance => instance;
 }
