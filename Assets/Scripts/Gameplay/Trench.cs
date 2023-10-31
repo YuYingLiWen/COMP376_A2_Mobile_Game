@@ -41,7 +41,7 @@ public class Trench: MonoBehaviour
     {
         if(collision.CompareTag("Enemy"))
         {
-            currentCount = Mathf.Max(0, currentCount - 1);
+            currentCount = ((currentCount - 1) < 0? 0: currentCount - 1);
         }
     }
 }
