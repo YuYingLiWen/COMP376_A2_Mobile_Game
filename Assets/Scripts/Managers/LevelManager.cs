@@ -56,7 +56,6 @@ public class LevelManager : MonoBehaviour
         OnGameOver?.Invoke();
         GameManager.GetInstance().HasWon = false;
         SceneDirector.GetInstance().Load(SceneDirector.SceneNames.CREDITS_SCENE, true);
-        Debug.Log("Game Lost");
     }
 
     public void IncreaseKillCount()
